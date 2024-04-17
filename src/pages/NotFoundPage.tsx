@@ -1,7 +1,12 @@
 const NotFoundPage = () => {
   return (
     <main>
-      <div>NotFoundPage</div>
+      <div className="container pb-[32px]">
+        <div className="content-container bg-accent rounded-30">
+          <div></div>
+          NotFoundPage
+        </div>
+      </div>
     </main>
   );
 };

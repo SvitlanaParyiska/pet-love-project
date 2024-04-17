@@ -1,7 +1,7 @@
 const RegistrationPage = () => {
   return (
     <main>
-      <div>RegistrationPage</div>
+      <div className="container pb-[32px]">RegistrationPage</div>
     </main>
   );
 };

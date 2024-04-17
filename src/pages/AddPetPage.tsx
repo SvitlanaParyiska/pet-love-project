@@ -1,7 +1,7 @@
 const AddPetPage = () => {
   return (
     <main>
-      <div>AddPetPage</div>
+      <div className="container pb-[32px]">AddPetPage</div>
     </main>
   );
 };

@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { lazy } from "react";
+import { Toaster } from "react-hot-toast";
 import Layout from "./Layout";
 import PrivateRoute from "../quards/PrivateRoute";
 import PublicRoute from "../quards/PublicRoute";
@@ -17,6 +18,7 @@ const NotFound = lazy(() => import("../pages/NotFoundPage"));
 function App() {
   return (
     <>
+      <Toaster position="top-right" toastOptions={{ duration: 2000 }} />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

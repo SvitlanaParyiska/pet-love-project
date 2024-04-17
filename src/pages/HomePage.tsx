@@ -1,9 +1,9 @@
-
-
 const HomePage = () => {
   return (
     <main>
-      <div>HomePage</div>
+      <div className="container pb-[32px]">
+        <h1 className="text-28">HomePage</h1>
+      </div>
     </main>
   );
 };

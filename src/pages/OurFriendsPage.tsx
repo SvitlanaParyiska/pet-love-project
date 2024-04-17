@@ -1,7 +1,7 @@
 const OurFriendsPage = () => {
   return (
     <main>
-      <div>OurFriendsPage</div>
+      <div className="container pb-[32px]">OurFriendsPage</div>
     </main>
   );
 };

@@ -1,8 +1,6 @@
-
-
 const LoginPage = () => {
   return (
-    <main>
+    <main className="container pb-[32px]">
       <div>LoginPage</div>
     </main>
   );

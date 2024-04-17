@@ -1,7 +1,7 @@
 const NewsPage = () => {
   return (
     <main>
-      <div>NewsPage</div>
+      <div className="container pb-[32px]">NewsPage</div>
     </main>
   );
 };

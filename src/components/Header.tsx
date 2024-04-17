@@ -1,12 +1,15 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import AuthNav from "./AuthNav";
 import UserNav from "./UserNav";
+import Logo from "./Logo";
 
 function Header() {
   return (
-    <header>
-      <NavLink to="/">Logo</NavLink>
+    <header className="header-container flex">
+      <Link to="/">
+        <Logo />
+      </Link>
       <nav>
         <Nav />
         <AuthNav />

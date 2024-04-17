@@ -13,7 +13,6 @@
     "@reduxjs/toolkit": "^2.2.3",
     "axios": "^1.6.8",
     "formik": "^2.4.5",
-    "modern-normalize": "^2.0.0",
     "nanoid": "^5.0.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -25,7 +24,6 @@
     "react-select": "^5.8.0",
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
-    "styled-components": "^6.1.8",
     "yup": "^1.4.0"
   },
   "devDependencies": {
