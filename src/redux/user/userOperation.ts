@@ -119,7 +119,7 @@ export const addUserNotice = createAsyncThunk(
 );
 
 export const deleteUserNotice = createAsyncThunk(
-  "auth/addNotice",
+  "auth/deleteNotice",
   async (id: string, thunkAPI) => {
     try {
       const response = await axios.delete(`/notices/favorites/remove/${id}`);

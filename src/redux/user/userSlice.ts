@@ -1,6 +1,17 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { logOut, signIn, signUp, userRefresh } from "./userOperation";
+import {
+  getFullCurrentUser,
+  logOut,
+  signIn,
+  signUp,
+  userRefresh,
+  editUser,
+  addUserPet,
+  deleteUserPet,
+  addUserNotice,
+  deleteUserNotice,
+} from "./userOperation";
 import { User, UserState } from "../../types/auth";
 
 const initialState: UserState = {
@@ -10,7 +21,8 @@ const initialState: UserState = {
     phone: "",
     avatar: "",
     token: null,
-    notices: [],
+    noticesViewed: [],
+    noticesFavorites: [],
     pets: [],
   },
   isLoading: false,
@@ -35,17 +47,25 @@ const handleRejectedAction = (
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    resetStore: () => {
+      return { ...initialState };
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(signUp.fulfilled, (state, action: PayloadAction<User>) => {
         state.isLoading = false;
-        state.user = action.payload;
+        state.user.email = action.payload.email;
+        state.user.name = action.payload.name;
+        state.user.token = action.payload.token;
         state.isLoggedIn = true;
       })
       .addCase(signIn.fulfilled, (state, action: PayloadAction<User>) => {
         state.isLoading = false;
-        state.user = action.payload;
+        state.user.email = action.payload.email;
+        state.user.name = action.payload.name;
+        state.user.token = action.payload.token;
         state.isLoggedIn = true;
       })
       .addCase(logOut.fulfilled, (state) => {
@@ -60,9 +80,62 @@ const userSlice = createSlice({
       })
       .addCase(userRefresh.fulfilled, (state, action: PayloadAction<User>) => {
         state.isRefreshing = false;
-        state.user = action.payload;
+        state.user.email = action.payload.email;
+        state.user.name = action.payload.name;
+        state.user.token = action.payload.token;
+        state.user.noticesFavorites = action.payload.noticesFavorites || [];
         state.isLoggedIn = true;
       })
+      .addCase(
+        getFullCurrentUser.fulfilled,
+        (state, action: PayloadAction<User>) => {
+          state.isLoading = false;
+          state.user.email = action.payload.email;
+          state.user.name = action.payload.name;
+          state.user.token = action.payload.token;
+          state.user.noticesFavorites = action.payload.noticesFavorites || [];
+          state.user.pets = action.payload.pets || [];
+          state.isLoggedIn = true;
+        }
+      )
+      .addCase(editUser.fulfilled, (state, action: PayloadAction<User>) => {
+        state.isLoading = false;
+        state.user.email = action.payload.email;
+        state.user.name = action.payload.name;
+        state.user.token = action.payload.token;
+        state.user.noticesFavorites = action.payload.noticesFavorites || [];
+        state.user.pets = action.payload.pets || [];
+        state.isLoggedIn = true;
+      })
+      .addCase(addUserPet.fulfilled, (state, action: PayloadAction<User>) => {
+        state.isLoading = false;
+        state.user.pets = action.payload.pets || [];
+        state.isLoggedIn = true;
+      })
+      .addCase(
+        deleteUserPet.fulfilled,
+        (state, action: PayloadAction<User>) => {
+          state.isLoading = false;
+          state.user.pets = action.payload.pets || [];
+          state.isLoggedIn = true;
+        }
+      )
+      .addCase(
+        addUserNotice.fulfilled,
+        (state, action: PayloadAction<User>) => {
+          state.isLoading = false;
+          state.user.noticesFavorites = action.payload.noticesFavorites || [];
+          state.isLoggedIn = true;
+        }
+      )
+      .addCase(
+        deleteUserNotice.fulfilled,
+        (state, action: PayloadAction<User>) => {
+          state.isLoading = false;
+          state.user.noticesFavorites = action.payload.noticesFavorites || [];
+          state.isLoggedIn = true;
+        }
+      )
       .addMatcher(
         (action) => action.type.endsWith("/pending"),
         handlePendingAction
@@ -75,3 +148,4 @@ const userSlice = createSlice({
 });
 
 export const userReducer = userSlice.reducer;
+export const { resetStore } = userSlice.actions;

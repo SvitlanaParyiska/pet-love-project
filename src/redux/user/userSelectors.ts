@@ -3,7 +3,11 @@ import { UserState } from "../../types/auth";
 export const selectToken = (state: { user: UserState }) =>
   state.user.user.token;
 
-export const selectUser = (state: { user: UserState }) => state.user.user;
+export const selectUserName = (state: { user: UserState }) =>
+  state.user.user.name;
+
+export const selectUserAvatar = (state: { user: UserState }) =>
+  state.user.user.avatar;
 
 export const selectIsLoading = (state: { user: UserState }) =>
   state.user.isLoading;

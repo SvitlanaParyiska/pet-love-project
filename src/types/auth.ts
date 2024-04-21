@@ -4,7 +4,8 @@ export interface User {
   phone: string;
   avatar: string;
   token: null | string;
-  notices?: [];
+  noticesViewed?: [];
+  noticesFavorites?: [];
   pets?: [];
 }
 
