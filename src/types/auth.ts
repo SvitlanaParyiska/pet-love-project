@@ -19,9 +19,12 @@ export interface SignIn extends Omit<SignUp, "name"> {}
 
 export interface UserState {
   user: User;
-  isLoading: boolean;
   isLoggedIn: boolean;
   isRefreshing: boolean;
+}
+
+export interface AppState {
+  isLoading: boolean;
   error: string | null | unknown;
 }
 

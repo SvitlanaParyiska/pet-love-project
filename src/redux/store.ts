@@ -12,6 +12,7 @@ import {
 } from "redux-persist";
 import { UserState } from "../types/auth";
 import { dataBaseReducer } from "./dataBase/dataBaseSlice";
+import { appReducer } from "./app/appSlice";
 
 const persistConfig = {
   key: "user",
@@ -22,7 +23,8 @@ const persistConfig = {
 export const store = configureStore({
   reducer: {
     user: persistReducer<UserState>(persistConfig, userReducer),
-    daseData: dataBaseReducer,
+    dataBase: dataBaseReducer,
+    app: appReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

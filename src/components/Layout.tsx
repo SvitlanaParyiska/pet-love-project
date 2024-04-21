@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import Loader from "./Loader";
 import Header from "./Header";
-import { selectIsLoading } from "../redux/user/userSelectors";
 import { Outlet } from "react-router-dom";
 import { useAppSelector } from "../hooks/useReduxHooks";
+import { selectIsLoading } from "../redux/app/appSelectors";
 
 function Layout() {
   const loading = useAppSelector(selectIsLoading);

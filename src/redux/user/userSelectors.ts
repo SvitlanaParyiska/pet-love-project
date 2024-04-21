@@ -9,9 +9,6 @@ export const selectUserName = (state: { user: UserState }) =>
 export const selectUserAvatar = (state: { user: UserState }) =>
   state.user.user.avatar;
 
-export const selectIsLoading = (state: { user: UserState }) =>
-  state.user.isLoading;
-
 export const selectIsLoggedIn = (state: { user: UserState }) =>
   state.user.isLoggedIn;
 

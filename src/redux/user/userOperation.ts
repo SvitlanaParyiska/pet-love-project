@@ -3,24 +3,35 @@ import axios from "axios";
 import { RootState } from "../store";
 import { EditUserForm, AddPetForm } from "../../types/InterfaceData";
 import { SignIn, SignUp } from "../../types/auth";
+import {
+  addNotice,
+  addPet,
+  currentUser,
+  deleteNotice,
+  deletePet,
+  fullUser,
+  login,
+  logout,
+  profileEdit,
+  register,
+} from "../../api/authApi";
 
-axios.defaults.baseURL = "https://petlove.b.goit.study/api";
-
-const setAuthHeader = (token: string) => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
-
-const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = "";
+export const setToken = {
+  set(token: string) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    axios.defaults.headers.common.Authorization = "";
+  },
 };
 
 export const signUp = createAsyncThunk(
   "auth/signup",
-  async (data: SignUp, thunkAPI) => {
+  async (body: SignUp, thunkAPI) => {
     try {
-      const response = await axios.post("/users/signup", data);
-      setAuthHeader(response.data.token);
-      return response.data;
+      const data = await register(body);
+      setToken.set(data.token);
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -29,11 +40,11 @@ export const signUp = createAsyncThunk(
 
 export const signIn = createAsyncThunk(
   "auth/signin",
-  async (data: SignIn, thunkAPI) => {
+  async (body: SignIn, thunkAPI) => {
     try {
-      const response = await axios.post("/users/signin", data);
-      setAuthHeader(response.data.token);
-      return response.data;
+      const data = await login(body);
+      setToken.set(data.token);
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -48,10 +59,10 @@ export const userRefresh = createAsyncThunk(
     if (!user.user.token) {
       return thunkAPI.rejectWithValue("Error, no valid token");
     }
-    setAuthHeader(user.user.token);
+    setToken.set(user.user.token);
     try {
-      const response = await axios.get("/users/current");
-      return response.data;
+      const data = await currentUser();
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -62,8 +73,8 @@ export const getFullCurrentUser = createAsyncThunk(
   "auth/getFullUser",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("/users/current/full");
-      return response.data;
+      const data = await fullUser();
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -72,10 +83,10 @@ export const getFullCurrentUser = createAsyncThunk(
 
 export const editUser = createAsyncThunk(
   "auth/editUser",
-  async (data: EditUserForm, thunkAPI) => {
+  async (body: EditUserForm, thunkAPI) => {
     try {
-      const response = await axios.patch("/users/current/edit", data);
-      return response.data;
+      const data = await profileEdit(body);
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -84,10 +95,10 @@ export const editUser = createAsyncThunk(
 
 export const addUserPet = createAsyncThunk(
   "auth/addPet",
-  async (data: AddPetForm, thunkAPI) => {
+  async (body: AddPetForm, thunkAPI) => {
     try {
-      const response = await axios.post("users/current/pets/add", data);
-      return response.data;
+      const data = await addPet(body);
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -98,8 +109,8 @@ export const deleteUserPet = createAsyncThunk(
   "auth/deletePet",
   async (id: string, thunkAPI) => {
     try {
-      const response = await axios.delete(`users/current/pets/remove/${id}`);
-      return response.data;
+      const data = await deletePet(id);
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -110,8 +121,8 @@ export const addUserNotice = createAsyncThunk(
   "auth/addNotice",
   async (id: string, thunkAPI) => {
     try {
-      const response = await axios.post(`/notices/favorites/add/${id}`);
-      return response.data;
+      const data = await addNotice(id);
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -122,8 +133,8 @@ export const deleteUserNotice = createAsyncThunk(
   "auth/deleteNotice",
   async (id: string, thunkAPI) => {
     try {
-      const response = await axios.delete(`/notices/favorites/remove/${id}`);
-      return response.data;
+      const data = await deleteNotice(id);
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -132,8 +143,9 @@ export const deleteUserNotice = createAsyncThunk(
 
 export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
-    await axios.post("/users/signout");
-    clearAuthHeader();
+    const data = await logout();
+    setToken.unset();
+    return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
   }

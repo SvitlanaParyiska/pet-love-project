@@ -25,23 +25,8 @@ const initialState: UserState = {
     noticesFavorites: [],
     pets: [],
   },
-  isLoading: false,
   isLoggedIn: false,
   isRefreshing: false,
-  error: "",
-};
-
-const handlePendingAction = (state: UserState) => {
-  state.isLoading = true;
-  state.error = null;
-};
-
-const handleRejectedAction = (
-  state: UserState,
-  { payload }: { payload: Error }
-) => {
-  state.isLoading = false;
-  state.error = payload;
 };
 
 const userSlice = createSlice({
@@ -55,14 +40,12 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(signUp.fulfilled, (state, action: PayloadAction<User>) => {
-        state.isLoading = false;
         state.user.email = action.payload.email;
         state.user.name = action.payload.name;
         state.user.token = action.payload.token;
         state.isLoggedIn = true;
       })
       .addCase(signIn.fulfilled, (state, action: PayloadAction<User>) => {
-        state.isLoading = false;
         state.user.email = action.payload.email;
         state.user.name = action.payload.name;
         state.user.token = action.payload.token;
@@ -89,7 +72,6 @@ const userSlice = createSlice({
       .addCase(
         getFullCurrentUser.fulfilled,
         (state, action: PayloadAction<User>) => {
-          state.isLoading = false;
           state.user.email = action.payload.email;
           state.user.name = action.payload.name;
           state.user.token = action.payload.token;
@@ -99,7 +81,6 @@ const userSlice = createSlice({
         }
       )
       .addCase(editUser.fulfilled, (state, action: PayloadAction<User>) => {
-        state.isLoading = false;
         state.user.email = action.payload.email;
         state.user.name = action.payload.name;
         state.user.token = action.payload.token;
@@ -108,14 +89,12 @@ const userSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(addUserPet.fulfilled, (state, action: PayloadAction<User>) => {
-        state.isLoading = false;
         state.user.pets = action.payload.pets || [];
         state.isLoggedIn = true;
       })
       .addCase(
         deleteUserPet.fulfilled,
         (state, action: PayloadAction<User>) => {
-          state.isLoading = false;
           state.user.pets = action.payload.pets || [];
           state.isLoggedIn = true;
         }
@@ -123,7 +102,6 @@ const userSlice = createSlice({
       .addCase(
         addUserNotice.fulfilled,
         (state, action: PayloadAction<User>) => {
-          state.isLoading = false;
           state.user.noticesFavorites = action.payload.noticesFavorites || [];
           state.isLoggedIn = true;
         }
@@ -131,18 +109,9 @@ const userSlice = createSlice({
       .addCase(
         deleteUserNotice.fulfilled,
         (state, action: PayloadAction<User>) => {
-          state.isLoading = false;
           state.user.noticesFavorites = action.payload.noticesFavorites || [];
           state.isLoggedIn = true;
         }
-      )
-      .addMatcher(
-        (action) => action.type.endsWith("/pending"),
-        handlePendingAction
-      )
-      .addMatcher(
-        (action) => action.type.endsWith("/rejected"),
-        handleRejectedAction
       );
   },
 });
