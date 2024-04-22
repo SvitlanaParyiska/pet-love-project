@@ -13,6 +13,7 @@ export default {
       buttonHover: "#fbe7c1",
       buttonAccent: "#f9b020",
       grey: "rgba(38, 38, 38, 0.15)",
+      darkGrey: "rgba(38, 38, 38, 0.5)",
       medgrey: "rgba(255, 255, 255, 0.15)",
       lightgrey: "rgba(255, 255, 255, 0.5)",
       bgmodal: "rgba(38, 38, 38, 0.3)",

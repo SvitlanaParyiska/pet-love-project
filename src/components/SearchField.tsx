@@ -1,9 +1,9 @@
-
-
-function SearchField() {
-  return (
-    <div>SearchField</div>
-  )
+interface FilterProps {
+  changeFilter: (data: string) => void;
 }
 
-export default SearchField
+const SearchField = ({ changeFilter }: FilterProps) => {
+  return <div onChange={() => changeFilter("test")}>SearchField</div>;
+};
+
+export default SearchField;

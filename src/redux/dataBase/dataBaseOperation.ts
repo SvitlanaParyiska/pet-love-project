@@ -93,9 +93,9 @@ export const getAllFriends = createAsyncThunk(
 
 export const getAllNews = createAsyncThunk(
   "database/news",
-  async (_, thunkAPI) => {
+  async (body: { page: number; filter: string }, thunkAPI) => {
     try {
-      const data = await getNews();
+      const data = await getNews(body.page, body.filter);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

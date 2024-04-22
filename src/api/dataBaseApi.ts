@@ -37,7 +37,9 @@ export const getFriends = async () => {
   return data;
 };
 
-export const getNews = async () => {
-  const { data } = await axios.get("news");
+export const getNews = async (page: number, filter: string) => {
+  const { data } = await axios.get("news", {
+    params: { keyword: filter, page },
+  });
   return data;
 };
