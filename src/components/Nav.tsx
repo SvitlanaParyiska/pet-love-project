@@ -5,19 +5,19 @@ function Nav() {
     <div className="flex gap-2.5 mr-[142px]">
       <NavLink
         to="/news"
-        className="px-[20px] py-[15px] border-1 rounded-30 border-grey active:border-accent focus:border-accent hover:border-accent"
+        className="px-[19px] py-[14px] border-1 rounded-30 border-grey active:border-accent focus:border-accent hover:border-accent leading-tight tracking-[-0.03em]"
       >
         News
       </NavLink>
       <NavLink
         to="/notices"
-        className="px-[20px] py-[15px] border-1 rounded-30 border-grey active:border-accent focus:border-accent hover:border-accent"
+        className="px-[19px] py-[14px] border-1 rounded-30 border-grey active:border-accent focus:border-accent hover:border-accent leading-tight tracking-[-0.03em]"
       >
         Find pet
       </NavLink>
       <NavLink
         to="/friends"
-        className="px-[20px] py-[15px] border-1 rounded-30 border-grey active:border-accent focus:border-accent hover:border-accent"
+        className="px-[19px] py-[14px] border-1 rounded-30 border-grey active:border-accent focus:border-accent hover:border-accent leading-tight tracking-[-0.03em]"
       >
         Our friends
       </NavLink>

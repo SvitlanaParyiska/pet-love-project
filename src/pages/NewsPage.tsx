@@ -33,7 +33,7 @@ const NewsPage = () => {
 
   return (
     <main>
-      <div className="container pb-[32px]">
+      <div className="container pb-[32px] desktop:px-[63px]">
         <Title text="News" />
         <SearchField changeFilter={handleFilter} />
         {data && <NewsList newsArr={data?.results} />}

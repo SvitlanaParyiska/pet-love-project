@@ -54,7 +54,10 @@
   }
 
   .content-container {
-    min-height: calc(100vh - 146px);
+    min-height: calc(100vh - 100px);
+    @media (min-width: 768px) {
+      min-height: calc(100vh - 146px);
+    }
   }
   /* .section {
     @apply rounded-30 bg-light-dark w-full py-[40px] px-[20px] md:px-[40px] lg:pb-[28px];
