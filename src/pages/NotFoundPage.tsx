@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const NotFoundPage = () => {
   return (
     <main>
-      <div className="container pb-[32px]">
+      <div className="container pb-[20px] tablet:pb-[32px]">
         <div className="content-container bg-accent rounded-30 flex flex-col justify-center items-center">
           <div>
             <div className="flex justify-center items-center mb-[20px] tablet:mb-[40px]">
