@@ -16,6 +16,7 @@ export default {
       darkGrey: "rgba(38, 38, 38, 0.5)",
       medgrey: "rgba(255, 255, 255, 0.15)",
       lightgrey: "rgba(255, 255, 255, 0.5)",
+      lightAccent: "rgba(255, 255, 255, 0.4)",
       bgmodal: "rgba(38, 38, 38, 0.3)",
       bgAccent: "rgba(255, 255, 255, 0.1)",
       error: "#ef2447",
@@ -34,6 +35,7 @@ export default {
       12: "12px",
       15: "15px",
       30: "30px",
+      60: "60px",
       full: "9999px",
     },
     borderWidth: {
@@ -59,14 +61,17 @@ export default {
       54: "54px",
       68: "68px",
       70: "70px",
+      76: "76px",
+      80: "80px",
+      90: "90px",
       120: "120px",
       300: "300px",
     },
-    fontFamily: {
-      "manrope-medium": "Manrope-medium",
-      "manrope-semibold": "Manrope-Semibold",
-      "manrope-bold": "Manrope-Bold",
-      "manrope-extrabold": "Manrope-ExtraBold",
+    fontWeight: {
+      medium: "500",
+      semibold: "600",
+      bold: "700",
+      extrabold: "800",
     },
     transitionDuration: {
       350: "350ms",
