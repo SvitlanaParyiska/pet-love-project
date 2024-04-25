@@ -25,7 +25,7 @@ function LogOutBtn({ size, color }: LogOutBtnProps) {
 
   const sizeVariants = {
     mobile:
-      "py-[12px] px-[60px] w-full tablet:w-[210px] leading-[1.29] tracking-[-0.03em] tablet:font-manrope-bold",
+      "py-[12px] px-[60px] w-full tablet:w-[210px] leading-[1.29] tracking-[-0.03em] tablet:font-bold",
     tablet: "py-[15px] px-[35px] w-[142px] leading-tight tracking-[-0.03em]",
   };
 

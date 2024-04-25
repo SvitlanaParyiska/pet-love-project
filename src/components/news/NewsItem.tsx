@@ -21,7 +21,7 @@ function NewsItem({ item }: NewsProps) {
           alt="new"
           className="rounded-15 w-full h-[190px] object-cover"
         />
-        <h3 className="mt-[20px] font-manrope-bold text-16 leading-tight tracking-[-0.03em]">
+        <h3 className="mt-[20px] font-bold text-16 leading-tight tracking-[-0.03em]">
           {item.title}
         </h3>
         <p className="mt-[12px] text-14 leading-[1.29] tracking-[-0.02em] text-ellipsis overflow-hidden ...">

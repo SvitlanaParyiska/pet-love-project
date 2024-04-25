@@ -27,7 +27,7 @@ function FriendsItem({ friend }: FriendsProps) {
         className="w-[80px] h-[80px] rounded-full overflow-hidden"
       />
       <div>
-        <h3 className="font-manrope-bold text-16 leading-tight tracking-[-0.04em]">
+        <h3 className="font-bold text-16 leading-tight tracking-[-0.04em]">
           {friend.title}
         </h3>
         <p className="text-14 text-darkGrey leading-[1.29] tracking-[-0.02em] mt-[14px]">

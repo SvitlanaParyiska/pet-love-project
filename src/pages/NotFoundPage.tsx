@@ -13,7 +13,7 @@ const NotFoundPage = () => {
         <div className="content-container bg-accent rounded-30 flex flex-col justify-center items-center">
           <div>
             <div className="flex justify-center items-center mb-[20px] tablet:mb-[40px]">
-              <p className="font-manrope-extrabold text-120 tablet:text-300 text-white leading-none">
+              <p className="font-extrabold text-120 tablet:text-300 text-white leading-none">
                 4
               </p>
               <div className="w-[109px] h-[109px] tablet:w-[280px] tablet:h-[280px] rounded-full overflow-hidden bg-bgAccent">
@@ -33,16 +33,16 @@ const NotFoundPage = () => {
                   <img src={imageMobile} alt="404 cat" />
                 </picture>
               </div>
-              <p className="font-manrope-extrabold text-120 tablet:text-300 text-white leading-none">
+              <p className="font-extrabold text-120 tablet:text-300 text-white leading-none">
                 4
               </p>
             </div>
-            <p className="text-center font-manrope-bold text-16 tablet:text-24 text-white leading-tight tracking-[-0.03em] mb-[20px]">
+            <p className="text-center font-bold text-16 tablet:text-24 text-white leading-tight tracking-[-0.03em] mb-[20px]">
               Ooops! This page not found :(
             </p>
             <Link
               to="/"
-              className="block mx-auto w-[160px] tablet:w-[175px] bg-light py-[12px] px-[30px] rounded-30 font-manrope-bold text-accent text-14 tablet:text-16 active:bg-buttonHover focus:bg-buttonHover hover:bg-buttonHover"
+              className="block mx-auto w-[160px] tablet:w-[175px] bg-light py-[12px] px-[30px] rounded-30 font-bold text-accent text-14 tablet:text-16 active:bg-buttonHover focus:bg-buttonHover hover:bg-buttonHover"
             >
               To home page
             </Link>

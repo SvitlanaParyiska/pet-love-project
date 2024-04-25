@@ -90,13 +90,13 @@ const BurgerMenu = ({ isMenuOpen, toggleMenu }: MobileMenuProps) => {
           <div className="flex flex-col gap-[8px] tablet:flex-row w-full justify-center">
             <NavLink
               to="/login"
-              className="px-[20px] py-[12px] flex justify-center items-center w-full tablet:w-[121px]  border-1 rounded-30 border-lightgrey bg-accent text-14 tablet:text-16 font-manrope-bold text-white tracking-[-0.03em] leading-[1.28] "
+              className="px-[20px] py-[12px] flex justify-center items-center w-full tablet:w-[121px]  border-1 rounded-30 border-lightgrey bg-accent text-14 tablet:text-16 font-bold text-white tracking-[-0.03em] leading-[1.28] "
             >
               LOG IN
             </NavLink>
             <NavLink
               to="/registration"
-              className="px-[20px] py-[12px] flex justify-center items-center w-full tablet:w-[149px] rounded-30 bg-light text-14 tablet:text-16 font-manrope-bold text-accent tracking-[-0.03em] leading-[1.28]"
+              className="px-[20px] py-[12px] flex justify-center items-center w-full tablet:w-[149px] rounded-30 bg-light text-14 tablet:text-16 font-bold text-accent tracking-[-0.03em] leading-[1.28]"
             >
               REGISTRATION
             </NavLink>

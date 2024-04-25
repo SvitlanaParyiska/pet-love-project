@@ -19,8 +19,8 @@ export default {
       lightAccent: "rgba(255, 255, 255, 0.4)",
       bgmodal: "rgba(38, 38, 38, 0.3)",
       bgAccent: "rgba(255, 255, 255, 0.1)",
-      error: "#ef2447",
-      success: "#08aa83",
+      red: "#ef2447",
+      green: "#08aa83",
     },
     screens: {
       sm: { max: "374px" },
@@ -34,6 +34,7 @@ export default {
       8: "8px",
       12: "12px",
       15: "15px",
+      20: "20px",
       30: "30px",
       60: "60px",
       full: "9999px",
