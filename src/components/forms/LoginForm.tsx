@@ -103,7 +103,7 @@ const LoginForm = () => {
             ) : null}
           </Input>
 
-          <div className="">
+          <div>
             <button
               type="submit"
               className="mb-[16px] block w-full bg-accent rounded-30 font-bold text-14 tablet:text-16 text-white leading-[1.29] tablet:leading-[1.25]tracking-[-0.03em] py-[12px] tablet:py-[16x] transition-colors duration-350 hover:bg-buttonAccent focus:bg-buttonAccent"
@@ -111,7 +111,7 @@ const LoginForm = () => {
               LOG IN
             </button>
             <Link
-              to={"/register"}
+              to="/registration"
               className="block w-full text-center text-darkGrey text-12 tablet:text-14 leading-[1.17] tracking-[-0.03em] hover:text-current transition-colors duration-350 md:text-14 tablet:leading-[1.43]"
             >
               Don't have an account?
