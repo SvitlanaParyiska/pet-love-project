@@ -4,8 +4,7 @@ import { useAppDispatch, useAppSelector } from "../hooks/useReduxHooks";
 import { getAllNews } from "../redux/dataBase/dataBaseOperation";
 import NewsList from "../components/news/NewsList";
 import SearchField from "../components/SearchField";
-import Pagination from "../components/Pagination";
-import { BtnType } from "../types/pagination";
+import PaginationList from "../components/PaginationList";
 import { selectNews } from "../redux/dataBase/dataBaseSelectors";
 
 const NewsPage = () => {
@@ -18,31 +17,41 @@ const NewsPage = () => {
     dispatch(getAllNews({ filter, page }));
   }, [dispatch, filter, page]);
 
-  const handlePage = (type: BtnType) => {
-    if (type === BtnType.Prev) {
-      setPage((prev) => prev - 1);
-    } else {
-      setPage((prev) => prev + 1);
-    }
+  const handlePage = (newPage: number) => {
+    setPage(newPage);
   };
 
-  const handleFilter = (data: string) => {
-    setFilter(data);
+  const handleFilter = (search: string) => {
+    setFilter(search);
+    setPage(1);
+  };
+
+  const resetFilter = () => {
+    setFilter("");
     setPage(1);
   };
 
   return (
     <main>
-      <div className="container pb-[32px] desktop:px-[63px]">
-        <Title text="News" />
-        <SearchField changeFilter={handleFilter} />
-        {data && <NewsList newsArr={data?.results} />}
-        {data && (
-          <Pagination
-            page={page}
-            handlePage={handlePage}
-            totalPages={data?.totalPages}
-          />
+      <div className="container pb-[32px] pt-[20px] desktop:px-[63px]">
+        <div className="tablet:flex tablet:justify-between tablet:items-end tablet:mb-[44px] desktop:mb-[60px]">
+          <Title text="News" />
+          <SearchField handleFilter={handleFilter} resetFilter={resetFilter} />
+        </div>
+
+        {data && data?.results?.length > 0 ? (
+          <NewsList newsArr={data?.results} />
+        ) : (
+          <p>Sorry, nothing... Try to change the search value </p>
+        )}
+        {data && data.totalPages > 1 && (
+          <div className="flex justify-center">
+            <PaginationList
+              page={page}
+              handlePage={handlePage}
+              totalPages={data?.totalPages}
+            />
+          </div>
         )}
       </div>
     </main>

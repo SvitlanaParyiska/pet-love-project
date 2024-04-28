@@ -59,14 +59,16 @@ const LoginPage = () => {
             </div>
           </MediaQuery>
         </section>
-        <section className="mx-auto pt-[80px] pb-[60px] max-w-[295px] tablet:max-w-[424px] desktop:py-[118px]">
-          <h1 className="mb-[12px] font-bold text-28 tablet:text-54 leading-[1] tracking-[-0.04em]">
-            Log in
-          </h1>
-          <p className="mb-[24px] desktop:mb-[32px] text-14 tablet:text-18 leading-[1.29] tracking-[-0.02em">
-            Welcome! Please enter your credentials to login to the platform:
-          </p>
-          <LoginForm />
+        <section className="mt-[10px] tablet:mt-[16px] rounded-30 tablet:rounded-60 py-[60px] px-[20px] tablet:py-[71px] tablet:px-[140px] desktop:px-[84px] desktop:flex desktop:items-center desktop:my-[0px] bg-white">
+          <div>
+            <h1 className="mb-[12px] font-bold text-28 tablet:text-54 leading-[1] tracking-[-0.04em] desktop:w-[424px]">
+              Log in
+            </h1>
+            <p className="mb-[24px] desktop:mb-[32px] text-14 tablet:text-18 leading-[1.29] tracking-[-0.02em] desktop:w-[424px]">
+              Welcome! Please enter your credentials to login to the platform:
+            </p>
+            <LoginForm />
+          </div>
         </section>
       </div>
     </main>

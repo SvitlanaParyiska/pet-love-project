@@ -33,12 +33,14 @@ function NewsItem({ item }: NewsProps) {
         <p className="text-14 text-darkGrey leading-[1.29] tracking-[-0.02em]">
           {getDateFormat(item.date)}
         </p>
-        <button
-          type="button"
-          className="text-14 underline leading-[1.29] tracking-[-0.02em] text-accent"
+        <a
+          href={item.url}
+          target="_blank"
+          rel="noreferrer noopener nofollow"
+          className="text-14 underline leading-[1.29] tracking-[-0.02em] text-accent cursor-pointer"
         >
           Read more
-        </button>
+        </a>
       </div>
     </li>
   );

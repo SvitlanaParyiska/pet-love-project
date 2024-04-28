@@ -50,7 +50,7 @@ const RegistrationForm = () => {
         handleBlur,
         handleSubmit,
       }) => (
-        <form onSubmit={handleSubmit} noValidate className="md:w-[472px]">
+        <form onSubmit={handleSubmit} noValidate className="desktop:w-[424px]">
           <Input
             id="name"
             type="text"

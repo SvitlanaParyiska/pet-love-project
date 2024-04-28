@@ -12,9 +12,9 @@ import {
 
 export const getAllNotices = createAsyncThunk(
   "database/allNotices",
-  async (_, thunkAPI) => {
+  async (body: { page: number; filter: string }, thunkAPI) => {
     try {
-      const data = await getNotices();
+      const data = await getNotices(body.page, body.filter);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

@@ -11,7 +11,7 @@ interface FriendsProps {
 
 function FriendsItem({ friend }: FriendsProps) {
   return (
-    <li className="py-[40px] px-[20px] flex flex-row gap-[14px] mobile:w-[335px]  relative tablet:w-[342px] desktop:w-[371px] ">
+    <li className="py-[40px] px-[20px] flex flex-row gap-[14px] mobile:w-[335px]  relative tablet:w-[342px] desktop:w-[371px] bg-white rounded-15">
       <div className="absolute top-[8px] right-[8px] p-[8px] bg-light rounded-30">
         <p className="text-12 text-accent">
           {workDaysIs(friend.workDays)

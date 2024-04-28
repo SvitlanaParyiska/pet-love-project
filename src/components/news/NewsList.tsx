@@ -15,7 +15,7 @@ interface NewListProps {
 
 function NewsList({ newsArr }: NewListProps) {
   return (
-    <ul className="mt-[24px] flex flex-col gap-[24px] items-center tablet:flex-row tablet:flex-wrap tablet:gap-y-[32px] tablet:gap-x-[24px] desktop:gap-y-[40px] desktop:gap-x-[35px]">
+    <ul className="mt-[24px] mb-[44px] tablet:mb-[60px] flex flex-col gap-[24px] items-center tablet:flex-row tablet:flex-wrap tablet:gap-y-[32px] tablet:gap-x-[24px] desktop:gap-y-[40px] desktop:gap-x-[35px]">
       {newsArr.map((item) => (
         <NewsItem item={item} key={nanoid()} />
       ))}

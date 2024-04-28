@@ -1,9 +1,20 @@
+import SearchField from "../SearchField";
 
-
-function NoticesFilters() {
-  return (
-    <div>NoticesFilters</div>
-  )
+export interface FilterData {
+  search: string;
 }
 
-export default NoticesFilters
+interface NoticesFiltersProps {
+  handleFilter: (data: string) => void;
+  resetFilter: () => void;
+}
+
+const NoticesFilters = ({ handleFilter, resetFilter }: NoticesFiltersProps) => {
+  return (
+    <>
+      <SearchField handleFilter={handleFilter} resetFilter={resetFilter} />
+    </>
+  );
+};
+
+export default NoticesFilters;

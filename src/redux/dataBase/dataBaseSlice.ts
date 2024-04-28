@@ -29,7 +29,7 @@ const dataBaseSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getAllNotices.fulfilled, (state, action) => {
-        state.notices = action.payload.results;
+        state.notices = action.payload;
       })
       .addCase(getCategories.fulfilled, (state, action) => {
         state.noticesCategories = action.payload;

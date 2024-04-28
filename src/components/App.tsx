@@ -4,6 +4,8 @@ import { Toaster } from "react-hot-toast";
 import Layout from "./Layout";
 import PrivateRoute from "../quards/PrivateRoute";
 import PublicRoute from "../quards/PublicRoute";
+import { theme } from "../theme";
+import { ThemeProvider } from "@mui/material";
 
 const Home = lazy(() => import("../pages/HomePage"));
 const News = lazy(() => import("../pages/NewsPage"));
@@ -17,7 +19,7 @@ const NotFound = lazy(() => import("../pages/NotFoundPage"));
 
 function App() {
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Toaster position="top-right" toastOptions={{ duration: 2000 }} />
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -60,7 +62,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-    </>
+    </ThemeProvider>
   );
 }
 

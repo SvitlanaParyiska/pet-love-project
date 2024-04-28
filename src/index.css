@@ -55,7 +55,7 @@
     font-family: "Manrope", sans-serif;
   }
   body {
-    @apply font-medium bg-white text-midnight;
+    @apply font-medium bg-greyWhite text-midnight;
   }
 }
 
