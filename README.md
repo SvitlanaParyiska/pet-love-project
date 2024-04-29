@@ -1,30 +1,40 @@
-# React + TypeScript + Vite
+<h1 align="center">
+  <br>
+  <a href="https://pet-love-project.vercel.app/"><img src="./public/images/dog.png" alt="dog" width="200"></a>
+  <br>
+Pet love
+  <br>
+</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Find your love pet with our service. Easy filtering, ability to add to favorites
+and quickly contact with owner.
 
-Currently, two official plugins are available:
+## Technology:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- TypeScript
+- React
+- React-dom
+- React-responsive
+- React-select
+- Redux Toolkit
+- Redux Persist
+- Formik + Yup
+- react-hot-toast
+- Tailwind-css
+- Material-ui (pagination)
+- Vite
 
-## Expanding the ESLint configuration
+## Scripts:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+| LEFT          | RIGHT                   |
+| ------------- | ----------------------- |
+| npm i         | dependency installation |
+| npm run dev   | start local server      |
+| npm run build | production build        |
 
-- Configure the top-level `parserOptions` property like this:
+[Link to site](https://pet-love-project.vercel.app/ "Pet love")
+[Link to Figma layout](https://www.figma.com/file/puMNfZVg4YI8UZoJ1QiLLi/Petl%F0%9F%92%9Bve?type=design&node-id=55838-750&mode=design&t=Xg1IwIcKebTl5xGs-0 "Figma Pet love")
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+![GitHub ReadMe](./public/images/petlove1.PNG)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+![GitHub ReadMe](./public/images/petlove2.PNG)

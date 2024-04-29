@@ -5,7 +5,7 @@ import {
   getNews,
   getNotices,
   getNoticesById,
-  getNoticesCategory,
+  getNoticesCategories,
   getNoticesSex,
   getNoticesSpecies,
 } from "../../api/dataBaseApi";
@@ -26,7 +26,7 @@ export const getCategories = createAsyncThunk(
   "database/categories",
   async (_, thunkAPI) => {
     try {
-      const data = await getNoticesCategory();
+      const data = await getNoticesCategories();
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

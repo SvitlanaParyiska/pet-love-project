@@ -2,13 +2,15 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://petlove.b.goit.study/api/";
 
-export const getNotices = async (page: number,filter: string) => {
-  const { data } = await axios.get("notices", { params: { keyword: filter, page } });
+export const getNotices = async (page: number, filter: string) => {
+  const { data } = await axios.get("notices", {
+    params: { keyword: filter, page },
+  });
   return data;
 };
 
-export const getNoticesCategory = async () => {
-  const { data } = await axios.get("notices/category");
+export const getNoticesCategories = async () => {
+  const { data } = await axios.get("notices/categories");
   return data;
 };
 

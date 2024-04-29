@@ -3,7 +3,13 @@ import Title from "../components/Title";
 import NoticesFilters from "../components/notices/NoticesFilters";
 import NoticesList from "../components/notices/NoticesList";
 import { useAppDispatch, useAppSelector } from "../hooks/useReduxHooks";
-import { getAllNotices } from "../redux/dataBase/dataBaseOperation";
+import {
+  getAllCities,
+  getAllNotices,
+  getCategories,
+  getSex,
+  getSpecies,
+} from "../redux/dataBase/dataBaseOperation";
 import { selectNotices } from "../redux/dataBase/dataBaseSelectors";
 import PaginationList from "../components/PaginationList";
 
@@ -12,6 +18,13 @@ const NoticesPage = () => {
   const [filter, setFilter] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getCategories());
+    dispatch(getSex());
+    dispatch(getSpecies());
+    // dispatch(getAllCities());
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getAllNotices({ page, filter }));
