@@ -4,7 +4,7 @@ import NoticesFilters from "../components/notices/NoticesFilters";
 import NoticesList from "../components/notices/NoticesList";
 import { useAppDispatch, useAppSelector } from "../hooks/useReduxHooks";
 import {
-  getAllCities,
+  // getAllCities,
   getAllNotices,
   getCategories,
   getSex,
