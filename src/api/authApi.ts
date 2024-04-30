@@ -1,6 +1,6 @@
 import axios from "axios";
 import { SignIn, SignUp } from "../types/auth";
-import { AddPetForm, EditUserForm } from "../types/InterfaceData";
+import { AddPet, EditUserForm } from "../types/InterfaceData";
 
 axios.defaults.baseURL = "https://petlove.b.goit.study/api/";
 
@@ -34,7 +34,7 @@ export const profileEdit = async (body: EditUserForm) => {
   return data;
 };
 
-export const addPet = async (pet: AddPetForm) => {
+export const addPet = async (pet: AddPet) => {
   const { data } = await axios.post("users/current/pets/add", pet);
   return data;
 };
