@@ -9,7 +9,7 @@ function UserBar() {
   const userPhoto = useAppSelector(selectUserAvatar);
 
   return (
-    <Link to="/profile" className="ml-[8px]">
+    <Link to="/profile" className="ml-[8px] flex items-center">
       <div className="w-[50px] h-[50px] rounded-full bg-light overflow-hidden flex justify-center items-center">
         {userPhoto ? (
           <img />
@@ -19,8 +19,8 @@ function UserBar() {
           </svg>
         )}
       </div>
-      <MediaQuery minWidth={1279}>
-        <p>{userName}</p>
+      <MediaQuery minWidth={768}>
+        <p className="">{userName}</p>
       </MediaQuery>
     </Link>
   );
