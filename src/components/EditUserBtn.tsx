@@ -1,9 +1,9 @@
-interface IEditUserBtn {
-  openEditUserModal: () => void;
-}
+// interface IEditUserBtn {
+//   openEditUserModal: () => void;
+// }
 
-const EditUserBtn = ({ openEditUserModal }: IEditUserBtn) => {
-  return <div>EditUserBtn</div>;
-};
+// const EditUserBtn = ({ openEditUserModal }: IEditUserBtn) => {
+//   return <div>EditUserBtn</div>;
+// };
 
-export default EditUserBtn;
+// export default EditUserBtn;
