@@ -3,10 +3,11 @@ import LogOutBtn from "./LogOutBtn";
 import UserBar from "./UserBar";
 
 function UserNav() {
+  
   return (
     <>
       <MediaQuery minWidth={768}>
-        <LogOutBtn size="tablet" color="accent" />
+        <LogOutBtn size="tablet" color="accent"/>
       </MediaQuery>
       <UserBar />
     </>

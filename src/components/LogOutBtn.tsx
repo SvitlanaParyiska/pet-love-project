@@ -1,6 +1,8 @@
+import clsx from "clsx";
 import { useAppDispatch } from "../hooks/useReduxHooks";
 import { logOut } from "../redux/user/userOperation";
 import { resetStore } from "../redux/user/userSlice";
+import { useLocation } from "react-router-dom";
 
 interface Color {
   white: string;
@@ -18,6 +20,8 @@ interface LogOutBtnProps {
 }
 
 function LogOutBtn({ size, color }: LogOutBtnProps) {
+  const currentUrl = useLocation();
+
   const colorVariants = {
     white: "bg-light hover:bg-buttonHover text-accent",
     accent: "bg-accent hover:bg-buttonAccent text-white",
@@ -35,13 +39,17 @@ function LogOutBtn({ size, color }: LogOutBtnProps) {
     dispatch(logOut());
     dispatch(resetStore());
   };
+
   return (
     <button
       type="button"
       onClick={handleLogOut}
-      className={`${colorVariants[color as keyof Color]}  ${
-        sizeVariants[size as keyof Size]
-      } border-1 rounded-30 text-14 tablet:text-16 flex justify-center items-center`}
+      className={clsx(
+        `${colorVariants[color as keyof Color]}  ${
+          sizeVariants[size as keyof Size]
+        } border-1 rounded-30 text-14 tablet:text-16 flex justify-center items-center`,
+        currentUrl.pathname === "/" && "hidden"
+      )}
     >
       LOG OUT
     </button>
