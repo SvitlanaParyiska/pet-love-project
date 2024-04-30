@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 import {
   getFullCurrentUser,
@@ -12,7 +12,7 @@ import {
   addUserNotice,
   deleteUserNotice,
 } from "./userOperation";
-import { User, UserState } from "../../types/auth";
+import { UserState } from "../../types/auth";
 
 const initialState: UserState = {
   user: {
@@ -20,17 +20,17 @@ const initialState: UserState = {
     email: "",
     phone: "",
     avatar: "",
-    token: null,
     noticesViewed: [],
     noticesFavorites: [],
     pets: [],
   },
-  isLoggedIn: true,
+  token: null,
+  isLoggedIn: false,
   isRefreshing: false,
 };
 
 const userSlice = createSlice({
-  name: "user",
+  name: "auth",
   initialState,
   reducers: {
     resetStore: () => {
@@ -39,16 +39,16 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(signUp.fulfilled, (state, action: PayloadAction<User>) => {
+      .addCase(signUp.fulfilled, (state, action) => {
         state.user.email = action.payload.email;
         state.user.name = action.payload.name;
-        state.user.token = action.payload.token;
+        state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-      .addCase(signIn.fulfilled, (state, action: PayloadAction<User>) => {
+      .addCase(signIn.fulfilled, (state, action) => {
         state.user.email = action.payload.email;
         state.user.name = action.payload.name;
-        state.user.token = action.payload.token;
+        state.token = action.payload.token;
         state.isLoggedIn = true;
       })
       .addCase(logOut.fulfilled, (state) => {
@@ -61,58 +61,47 @@ const userSlice = createSlice({
       .addCase(userRefresh.rejected, (state) => {
         state.isRefreshing = false;
       })
-      .addCase(userRefresh.fulfilled, (state, action: PayloadAction<User>) => {
+      .addCase(userRefresh.fulfilled, (state, action) => {
+        state.user.email = action.payload.email;
+        state.user.name = action.payload.name;
+        state.token = action.payload.token;
+        state.user.noticesFavorites = action.payload.noticesFavorites || [];
+        state.isLoggedIn = true;
         state.isRefreshing = false;
+      })
+      .addCase(getFullCurrentUser.fulfilled, (state, action) => {
         state.user.email = action.payload.email;
         state.user.name = action.payload.name;
-        state.user.token = action.payload.token;
+        state.token = action.payload.token;
         state.user.noticesFavorites = action.payload.noticesFavorites || [];
+        state.user.noticesViewed = action.payload.noticesViewed || [];
+        state.user.pets = action.payload.pets || [];
         state.isLoggedIn = true;
       })
-      .addCase(
-        getFullCurrentUser.fulfilled,
-        (state, action: PayloadAction<User>) => {
-          state.user.email = action.payload.email;
-          state.user.name = action.payload.name;
-          state.user.token = action.payload.token;
-          state.user.noticesFavorites = action.payload.noticesFavorites || [];
-          state.user.pets = action.payload.pets || [];
-          state.isLoggedIn = true;
-        }
-      )
-      .addCase(editUser.fulfilled, (state, action: PayloadAction<User>) => {
+      .addCase(editUser.fulfilled, (state, action) => {
         state.user.email = action.payload.email;
         state.user.name = action.payload.name;
-        state.user.token = action.payload.token;
+        state.token = action.payload.token;
         state.user.noticesFavorites = action.payload.noticesFavorites || [];
         state.user.pets = action.payload.pets || [];
         state.isLoggedIn = true;
       })
-      .addCase(addUserPet.fulfilled, (state, action: PayloadAction<User>) => {
+      .addCase(addUserPet.fulfilled, (state, action) => {
         state.user.pets = action.payload.pets || [];
         state.isLoggedIn = true;
       })
-      .addCase(
-        deleteUserPet.fulfilled,
-        (state, action: PayloadAction<User>) => {
-          state.user.pets = action.payload.pets || [];
-          state.isLoggedIn = true;
-        }
-      )
-      .addCase(
-        addUserNotice.fulfilled,
-        (state, action: PayloadAction<User>) => {
-          state.user.noticesFavorites = action.payload.noticesFavorites || [];
-          state.isLoggedIn = true;
-        }
-      )
-      .addCase(
-        deleteUserNotice.fulfilled,
-        (state, action: PayloadAction<User>) => {
-          state.user.noticesFavorites = action.payload.noticesFavorites || [];
-          state.isLoggedIn = true;
-        }
-      );
+      .addCase(deleteUserPet.fulfilled, (state, action) => {
+        state.user.pets = action.payload.pets || [];
+        state.isLoggedIn = true;
+      })
+      .addCase(addUserNotice.fulfilled, (state, action) => {
+        state.user.noticesFavorites = action.payload.noticesFavorites || [];
+        state.isLoggedIn = true;
+      })
+      .addCase(deleteUserNotice.fulfilled, (state, action) => {
+        state.user.noticesFavorites = action.payload.noticesFavorites || [];
+        state.isLoggedIn = true;
+      });
   },
 });
 

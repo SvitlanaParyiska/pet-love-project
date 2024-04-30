@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAppDispatch } from "../../hooks/useReduxHooks";
 import { Formik } from "formik";
 import { registerValidation } from "../../helpers/schemas";
-import { SignUp } from "../../types/auth";
+import { SignUpForm } from "../../types/auth";
 import { signUp } from "../../redux/user/userOperation";
 import toast from "react-hot-toast";
 import Input from "../ui/Input";
@@ -27,10 +27,18 @@ const RegistrationForm = () => {
 
   return (
     <Formik
-      initialValues={{ name: "", email: "", password: "" }}
+      initialValues={{ name: "", email: "", password: "", confirmPassword: "" }}
       validationSchema={registerValidation}
-      onSubmit={async ({ name, email, password }: SignUp, { resetForm }) => {
-        if (!name.trim() || !email.trim() || !password.trim()) {
+      onSubmit={async (
+        { name, email, password, confirmPassword }: SignUpForm,
+        { resetForm }
+      ) => {
+        if (
+          !name.trim() ||
+          !email.trim() ||
+          !password.trim() ||
+          !confirmPassword.trim()
+        ) {
           return;
         }
 
@@ -138,39 +146,43 @@ const RegistrationForm = () => {
             ) : null}
           </Input>
           <Input
-            id="password"
+            id="confirmPassword"
             type="password"
-            name="password"
-            value={values.password}
+            name="confirmPassword"
+            value={values.confirmPassword}
             onChange={handleChange}
             onBlur={handleBlur}
             placeholder="Confirm password"
             showPassword={showConfirmPassword}
             toggleShowPassword={toggleShowConfirmPassword}
-            touched={touched.password}
-            errors={errors.password}
+            touched={touched.confirmPassword}
+            errors={errors.confirmPassword}
             inputStyles={clsx(
               "px-[12px] py-[12px] tablet:px-[16px] tablet:py-[16px]",
-              touched.password && errors.password && "!border-red",
-              touched.password && !errors.password && "!border-green"
+              touched.confirmPassword &&
+                errors.confirmPassword &&
+                "!border-red",
+              touched.confirmPassword &&
+                !errors.confirmPassword &&
+                "!border-green"
             )}
             icon={true}
             wrapperStyles={clsx(
               "mb-[40px] tablet:mb-[64px]",
-              touched.email && errors.email
+              touched.confirmPassword && errors.confirmPassword
                 ? "mb-[16px] tablet:mb-[16px]"
                 : "mb-[16px] tablet:mb-[16px]"
             )}
           >
             <IconValidation
-              touched={touched.password}
-              errors={errors.password}
+              touched={touched.confirmPassword}
+              errors={errors.confirmPassword}
             />
 
-            {touched.password && errors.password ? (
-              <AuthErrorMessage message={errors.password} />
-            ) : touched.password && !errors.password ? (
-              <AuthErrorMessage message="Password is secure" isError={false} />
+            {touched.confirmPassword && errors.confirmPassword ? (
+              <AuthErrorMessage message="Passwords does not match" />
+            ) : touched.confirmPassword && !errors.confirmPassword ? (
+              <AuthErrorMessage message="Passwords match" isError={false} />
             ) : null}
           </Input>
           <div>

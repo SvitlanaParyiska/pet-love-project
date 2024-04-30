@@ -12,6 +12,9 @@ export const registerValidation = Yup.object({
   password: Yup.string()
     .min(7, "Password must be at least 7 characters")
     .required("Password is required"),
+  confirmPassword: Yup.string()
+    .min(7, "Password must be at least 7 characters")
+    .required("Confirm password is required"),
 });
 
 export const loginValidation = Yup.object({

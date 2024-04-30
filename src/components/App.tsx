@@ -1,11 +1,13 @@
 import { Route, Routes } from "react-router-dom";
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import Layout from "./Layout";
 import PrivateRoute from "../quards/PrivateRoute";
 import PublicRoute from "../quards/PublicRoute";
 import { theme } from "../theme";
 import { ThemeProvider } from "@mui/material";
+import { useAppDispatch } from "../hooks/useReduxHooks";
+import { userRefresh } from "../redux/user/userOperation";
 
 const Home = lazy(() => import("../pages/HomePage"));
 const News = lazy(() => import("../pages/NewsPage"));
@@ -18,6 +20,12 @@ const AddPet = lazy(() => import("../pages/AddPetPage"));
 const NotFound = lazy(() => import("../pages/NotFoundPage"));
 
 function App() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(userRefresh());
+  }, [dispatch]);
+
   return (
     <ThemeProvider theme={theme}>
       <Toaster position="top-right" toastOptions={{ duration: 2000 }} />

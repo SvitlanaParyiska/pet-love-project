@@ -15,14 +15,14 @@ import { dataBaseReducer } from "./dataBase/dataBaseSlice";
 import { appReducer } from "./app/appSlice";
 
 const persistConfig = {
-  key: "user",
+  key: "auth",
   storage,
   whitelist: ["token"],
 };
 
 export const store = configureStore({
   reducer: {
-    user: persistReducer<UserState>(persistConfig, userReducer),
+    auth: persistReducer<UserState>(persistConfig, userReducer),
     dataBase: dataBaseReducer,
     app: appReducer,
   },

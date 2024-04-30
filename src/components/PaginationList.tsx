@@ -11,8 +11,9 @@ interface PaginationProps {
 
 const PaginationList = ({ page, handlePage, totalPages }: PaginationProps) => {
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    handlePage(value);
-    console.log(event);
+    if (event) {
+      handlePage(value);
+    }
   };
 
   return (

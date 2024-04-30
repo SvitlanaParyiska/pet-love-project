@@ -54,12 +54,11 @@ export const signIn = createAsyncThunk(
 export const userRefresh = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {
-    const { user } = thunkAPI.getState() as RootState;
-
-    if (!user.user.token) {
+    const { auth } = thunkAPI.getState() as RootState;
+    if (!auth.token) {
       return thunkAPI.rejectWithValue("Error, no valid token");
     }
-    setToken.set(user.user.token);
+    setToken.set(auth.token);
     try {
       const data = await currentUser();
       return data;
@@ -98,8 +97,10 @@ export const addUserPet = createAsyncThunk(
   async (body: AddPet, thunkAPI) => {
     try {
       const data = await addPet(body);
+      console.log(data);
       return data;
     } catch (error) {
+      console.log(error);
       return thunkAPI.rejectWithValue(error);
     }
   }

@@ -25,6 +25,7 @@ const NoticesPage = () => {
   const [byPopularity, setByPopularity] = useState<null | boolean>(null);
   const dispatch = useAppDispatch();
 
+  console.log(page);
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getSex());

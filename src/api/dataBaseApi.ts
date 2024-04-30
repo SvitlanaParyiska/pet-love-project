@@ -14,7 +14,14 @@ export const getNotices = async (
 ) => {
   if (byPrice === null && byPopularity === null) {
     const { data } = await axios.get("notices", {
-      params: { keyword: filter, category, sex, species, locationId, page },
+      params: {
+        keyword: filter,
+        category,
+        sex,
+        species,
+        locationId,
+        page,
+      },
     });
     return data;
   } else if (byPrice !== null) {

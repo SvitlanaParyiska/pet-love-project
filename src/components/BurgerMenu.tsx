@@ -36,11 +36,18 @@ const BurgerMenu = ({ isMenuOpen, toggleMenu }: MobileMenuProps) => {
     }
   };
 
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   return (
     <div
       onClick={handleBackdropClick}
       className={clsx(
-        "fixed top-0 right-0 h-screen w-screen bg-overlay z-40 md:hidden transition-all duration-350",
+        "fixed top-0 right-0 h-full w-full z-40 desktop:hidden transition-all duration-350",
         isMenuOpen ? "opacity-100" : "opacity-0 invisible"
       )}
     >

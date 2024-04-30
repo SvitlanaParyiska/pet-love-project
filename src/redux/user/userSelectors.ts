@@ -1,19 +1,20 @@
 import { UserState } from "../../types/auth";
 
-export const selectToken = (state: { user: UserState }) =>
-  state.user.user.token;
+export const selectToken = (state: { auth: UserState }) => state.auth.token;
 
-export const selectUserName = (state: { user: UserState }) =>
-  state.user.user.name;
+export const selectFullUser = (state: { auth: UserState }) => state.auth.user;
 
-export const selectUserAvatar = (state: { user: UserState }) =>
-  state.user.user.avatar;
+export const selectUserName = (state: { auth: UserState }) =>
+  state.auth.user.name;
 
-export const selectIsLoggedIn = (state: { user: UserState }) =>
-  state.user.isLoggedIn;
+export const selectUserAvatar = (state: { auth: UserState }) =>
+  state.auth.user.avatar;
 
-export const selectIsRefreshing = (state: { user: UserState }) =>
-  state.user.isRefreshing;
+export const selectIsLoggedIn = (state: { auth: UserState }) =>
+  state.auth.isLoggedIn;
 
-export const selectUserPets = (state: { user: UserState }) =>
-  state.user.user.pets;
+export const selectIsRefreshing = (state: { auth: UserState }) =>
+  state.auth.isRefreshing;
+
+export const selectUserPets = (state: { auth: UserState }) =>
+  state.auth.user.pets;

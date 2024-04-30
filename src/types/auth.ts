@@ -3,9 +3,8 @@ export interface User {
   email: string;
   phone: string;
   avatar: string;
-  token: null | string;
-  noticesViewed?: [];
-  noticesFavorites?: [];
+  noticesViewed: Item[] | [];
+  noticesFavorites: Item[] | [];
   pets?: [];
 }
 
@@ -15,10 +14,21 @@ export interface SignUp {
   password: string;
 }
 
-export interface SignIn extends Omit<SignUp, "name"> {}
+export interface SignUpForm {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
+export interface SignIn {
+  email: string;
+  password: string;
+}
 
 export interface UserState {
   user: User;
+  token: null | string;
   isLoggedIn: boolean;
   isRefreshing: boolean;
 }
@@ -38,4 +48,21 @@ export interface Error {
 
 export interface LogOutResponse {
   message: string;
+}
+
+export interface Item {
+  _id: string;
+  species: string;
+  category: string;
+  title: string;
+  name: string;
+  birthday: string;
+  comment: string;
+  sex: string;
+  location: string;
+  imgURL: string;
+  createdAt: string;
+  user: string;
+  popularity: number;
+  updatedAt?: string;
 }
