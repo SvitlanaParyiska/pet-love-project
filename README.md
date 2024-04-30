@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://pet-love-project.vercel.app/"><img src="./public/images/tablet/dog-1x.png" alt="dog" width="200"></a>
+  <a href="https://pet-love-project.vercel.app/"><img src="./public/images/dog2x.png" alt="dog" width="200"></a>
   <br>
 Pet love
   <br>

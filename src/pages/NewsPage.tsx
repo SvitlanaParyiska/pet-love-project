@@ -34,9 +34,9 @@ const NewsPage = () => {
   return (
     <main>
       <div className="container pb-[32px] pt-[20px] desktop:px-[63px]">
-        <div className="tablet:flex tablet:justify-between tablet:items-end tablet:mb-[44px] desktop:mb-[60px]">
+        <div className="flex flex-col gap-[20px] tablet:flex-row tablet:justify-between tablet:items-end tablet:mb-[44px] desktop:mb-[60px]">
           <Title text="News" />
-          <SearchField handleFilter={handleFilter} resetFilter={resetFilter} />
+          <SearchField handleFilter={handleFilter} resetFilter={resetFilter} color={"grey"} />
         </div>
 
         {data && data?.results?.length > 0 ? (

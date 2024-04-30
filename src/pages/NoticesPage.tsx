@@ -17,6 +17,12 @@ const NoticesPage = () => {
   const data = useAppSelector(selectNotices);
   const [filter, setFilter] = useState<string>("");
   const [page, setPage] = useState<number>(1);
+  const [category, setCategory] = useState<string>("");
+  const [sex, setSex] = useState<string>("");
+  const [species, setSpecies] = useState<string>("");
+  const [locationId, setLocationId] = useState<string>("");
+  const [byPrice, setByPrice] = useState<null | boolean>(null);
+  const [byPopularity, setByPopularity] = useState<null | boolean>(null);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -27,8 +33,29 @@ const NoticesPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getAllNotices({ page, filter }));
-  }, [dispatch, filter, page]);
+    dispatch(
+      getAllNotices({
+        page,
+        filter,
+        category,
+        sex,
+        species,
+        locationId,
+        byPrice,
+        byPopularity,
+      })
+    );
+  }, [
+    byPopularity,
+    byPrice,
+    category,
+    sex,
+    dispatch,
+    filter,
+    locationId,
+    page,
+    species,
+  ]);
 
   const handlePage = (newPage: number) => {
     setPage(newPage);
@@ -36,6 +63,36 @@ const NoticesPage = () => {
 
   const handleFilter = (search: string) => {
     setFilter(search);
+    setPage(1);
+  };
+
+  const handleCategory = (item: string) => {
+    setCategory(item);
+    setPage(1);
+  };
+
+  const handleGender = (item: string) => {
+    setSex(item);
+    setPage(1);
+  };
+
+  const handleSpecies = (item: string) => {
+    setSpecies(item);
+    setPage(1);
+  };
+
+  const handleLocationId = (item: string) => {
+    setLocationId(item);
+    setPage(1);
+  };
+
+  const handleByPrice = (item: boolean) => {
+    setByPrice(item);
+    setPage(1);
+  };
+
+  const handleByPopularity = (item: boolean) => {
+    setByPopularity(item);
     setPage(1);
   };
 
@@ -48,7 +105,16 @@ const NoticesPage = () => {
     <main>
       <div className="container pb-[32px] pt-[20px] desktop:px-[63px]">
         <Title text="Find your favorite pet" />
-        <NoticesFilters handleFilter={handleFilter} resetFilter={resetFilter} />
+        <NoticesFilters
+          handleFilter={handleFilter}
+          resetFilter={resetFilter}
+          handleCategory={handleCategory}
+          handleSpecies={handleSpecies}
+          handleLocationId={handleLocationId}
+          handleByPrice={handleByPrice}
+          handleByPopularity={handleByPopularity}
+          handleGender={handleGender}
+        />
         {data && data?.results?.length > 0 ? (
           <NoticesList noticesArr={data?.results} />
         ) : (

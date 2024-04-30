@@ -25,7 +25,7 @@ const initialState: UserState = {
     noticesFavorites: [],
     pets: [],
   },
-  isLoggedIn: false,
+  isLoggedIn: true,
   isRefreshing: false,
 };
 

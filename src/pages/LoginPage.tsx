@@ -13,7 +13,7 @@ const LoginPage = () => {
   return (
     <main className="container pb-[20px] tablet:pb-[32px]">
       <div className="desktop:flex desktop:gap-[32px]">
-        <section className="relative desktop:content-container desktop:w-2/4 bg-accent rounded-30 tablet:rounded-60 h-[280px] tablet:h-[302px] flex justify-items-center items-end">
+        <section className="relative desktop:content-container desktop:w-2/4 bg-accent rounded-30 tablet:rounded-60 h-[280px] tablet:h-[302px] flex justify-center items-end">
           <picture>
             <source
               srcSet={`${imageDesktop} 1x,${imageDesktopR} 2x`}

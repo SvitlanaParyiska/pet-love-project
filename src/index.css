@@ -88,7 +88,40 @@
       height: calc((100vh - 32px) / 2);
     }
   }
-  /* .section {
-    @apply rounded-30 bg-light-dark w-full py-[40px] px-[20px] md:px-[40px] lg:pb-[28px];
-  } */
+}
+
+input[type="radio"] {
+  -webkit-appearance: none; /*to disable the default appearance of radio button*/
+  -moz-appearance: none;
+}
+
+input[type="radio"]:focus {
+  /*no need, if you don't disable default appearance*/
+  outline: none; /*to remove the square border on focus*/
+}
+
+input[type="radio"]:checked {
+  /*no need, if you don't disable default appearance*/
+  background-color: #f6b83d;
+}
+
+input[type="radio"]:checked ~ span:first-of-type {
+  color: white;
+  background-color: #f6b83d;
+}
+
+label span:first-of-type {
+  /* position: relative;
+  left: 0px; */
+  font-size: 15px;
+  padding: 12px;
+  border-radius: 30px;
+  color: #262626;
+  margin-right: 12px;
+  background-color: white;
+}
+
+label span {
+  /* position: relative;
+  top: 0px; */
 }

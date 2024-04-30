@@ -5,10 +5,10 @@ export interface EditUserForm {
   avatar: string;
 }
 
-export interface AddPetForm {
+export interface AddPet {
   name: string;
   title: string;
-  imgURL: string;
+  imgUrl: string;
   species: string;
   birthday: string;
   sex: string;

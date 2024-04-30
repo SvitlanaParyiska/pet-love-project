@@ -2,6 +2,11 @@ import { Formik } from "formik";
 import Input from "./ui/Input";
 import sprite from "/images/sprite.svg";
 
+interface Color {
+  white: string;
+  grey: string;
+}
+
 export interface FilterData {
   search: string;
 }
@@ -9,9 +14,14 @@ export interface FilterData {
 interface FilterProps {
   handleFilter: (data: string) => void;
   resetFilter: () => void;
+  color: string;
 }
 
-const SearchField = ({ handleFilter, resetFilter }: FilterProps) => {
+const SearchField = ({ handleFilter, resetFilter, color }: FilterProps) => {
+  const colorVariants = {
+    white: "bg-white",
+    grey: "bg-transparent",
+  };
   return (
     <Formik
       initialValues={{ search: "" }}
@@ -21,11 +31,7 @@ const SearchField = ({ handleFilter, resetFilter }: FilterProps) => {
     >
       {({ values, handleChange, handleSubmit, handleReset }) => (
         <>
-          <form
-            onSubmit={handleSubmit}
-            noValidate
-            className="mb-[24px] mt-[20px] tablet:mb-0 relative "
-          >
+          <form onSubmit={handleSubmit} noValidate className="relative ">
             <Input
               id={"search"}
               type="text"
@@ -33,7 +39,9 @@ const SearchField = ({ handleFilter, resetFilter }: FilterProps) => {
               value={values.search}
               onChange={handleChange}
               placeholder="Search"
-              inputStyles="pl-[12px] py-[12px] tablet:pl-[14px] tablet:py-[14px] tablet:w-[230px] bg-transparent"
+              inputStyles={`${
+                colorVariants[color as keyof Color]
+              } pl-[12px] py-[12px] tablet:pl-[14px] tablet:py-[14px] tablet:w-[230px]`}
               wrapperStyles=""
             />
             <button

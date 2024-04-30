@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "../store";
-import { EditUserForm, AddPetForm } from "../../types/InterfaceData";
+import { EditUserForm, AddPet } from "../../types/InterfaceData";
 import { SignIn, SignUp } from "../../types/auth";
 import {
   addNotice,
@@ -95,7 +95,7 @@ export const editUser = createAsyncThunk(
 
 export const addUserPet = createAsyncThunk(
   "auth/addPet",
-  async (body: AddPetForm, thunkAPI) => {
+  async (body: AddPet, thunkAPI) => {
     try {
       const data = await addPet(body);
       return data;

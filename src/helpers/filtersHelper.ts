@@ -1,6 +1,10 @@
-export const getOptions = (listOptions: string[]) => {
+export const getOptions = (listOptions: string[], text: string) => {
   const newArr = listOptions.map((item: string) => {
     return { value: item, label: item[0].toUpperCase() + item.slice(1) };
   });
-  return [{ value: "", label: "Show all" }, ...newArr];
+  if (text) {
+    return [{ value: "", label: text }, ...newArr];
+  } else {
+    return newArr;
+  }
 };

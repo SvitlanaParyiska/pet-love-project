@@ -46,7 +46,7 @@ const LoginForm = () => {
         handleBlur,
         handleSubmit,
       }) => (
-        <form onSubmit={handleSubmit} noValidate className="desktop:w-[424px] ">
+        <form onSubmit={handleSubmit} noValidate className="desktop:w-[424px]">
           <Input
             id="email"
             type="email"

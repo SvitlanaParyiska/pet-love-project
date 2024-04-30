@@ -2,11 +2,62 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://petlove.b.goit.study/api/";
 
-export const getNotices = async (page: number, filter: string) => {
-  const { data } = await axios.get("notices", {
-    params: { keyword: filter, page },
-  });
-  return data;
+export const getNotices = async (
+  page: number,
+  filter: string,
+  category: string,
+  sex: string,
+  species: string,
+  locationId: string,
+  byPrice: boolean | null,
+  byPopularity: boolean | null
+) => {
+  if (byPrice === null && byPopularity === null) {
+    const { data } = await axios.get("notices", {
+      params: { keyword: filter, category, sex, species, locationId, page },
+    });
+    return data;
+  } else if (byPrice !== null) {
+    const { data } = await axios.get("notices", {
+      params: {
+        keyword: filter,
+        category,
+        sex,
+        species,
+        locationId,
+        page,
+        byPrice,
+      },
+    });
+    return data;
+  } else if (byPopularity !== null) {
+    const { data } = await axios.get("notices", {
+      params: {
+        keyword: filter,
+        category,
+        sex,
+        species,
+        locationId,
+        page,
+        byPopularity,
+      },
+    });
+    return data;
+  } else {
+    const { data } = await axios.get("notices", {
+      params: {
+        keyword: filter,
+        category,
+        sex,
+        species,
+        locationId,
+        page,
+        byPrice,
+        byPopularity,
+      },
+    });
+    return data;
+  }
 };
 
 export const getNoticesCategories = async () => {
