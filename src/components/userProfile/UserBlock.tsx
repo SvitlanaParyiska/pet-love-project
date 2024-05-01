@@ -8,11 +8,12 @@ import sprite from "/images/sprite.svg";
 const UserBlock = () => {
   const userPhoto = useAppSelector(selectUserAvatar);
   const userInfo = useAppSelector(selectFullUser);
+
   return (
     <>
       <div className="mx-auto w-[94px] h-[94px] rounded-full bg-light overflow-hidden flex justify-center items-center">
         {userPhoto ? (
-          <img />
+          <img src={userInfo.avatar} />
         ) : (
           <svg className="w-[40px] h-[40px]">
             <use href={`${sprite}#icon-user`}></use>
@@ -38,7 +39,7 @@ const UserBlock = () => {
           {userInfo.email}
         </li>
         <li className="tablet:w-[305px] desktop:w-full p-[12px] border-1 border-grey rounded-30 text-14 leading-[1.29] tracking-[-0.03em]">
-          {userInfo.phone ? userInfo.name : "+380"}
+          {userInfo.phone ? userInfo.phone : "+380"}
         </li>
       </ul>
     </>

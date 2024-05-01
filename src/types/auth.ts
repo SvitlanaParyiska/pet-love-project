@@ -66,3 +66,8 @@ export interface Item {
   popularity: number;
   updatedAt?: string;
 }
+
+export interface ModalState {
+  isOpen: boolean;
+  modalName: string | null;
+}

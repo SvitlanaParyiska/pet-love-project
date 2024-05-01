@@ -1,6 +1,15 @@
+import { useState } from "react";
 import sprite from "/images/sprite.svg";
+import PortalModal from "../modals/PortalModal";
+import ModalEditUser from "../modals/ModalEditUser";
 
 const EditUserBtn = () => {
+  const [modalEdit, setModalEdit] = useState<boolean>(false);
+
+  const handleModalEdit = () => {
+    setModalEdit((state: boolean) => !state);
+  };
+
   return (
     <>
       <div className="flex justify-between">
@@ -14,6 +23,7 @@ const EditUserBtn = () => {
         </div>
         <button
           type="button"
+          onClick={handleModalEdit}
           className="bg-light rounded-full p-[10px] flex items-center justify-center"
         >
           <svg aria-label="icon male" className="w-[18px] h-[18px] ">
@@ -21,6 +31,11 @@ const EditUserBtn = () => {
           </svg>
         </button>
       </div>
+      {modalEdit && (
+        <PortalModal handleModal={handleModalEdit}>
+          <ModalEditUser closeEditUserModal={handleModalEdit} />
+        </PortalModal>
+      )}
     </>
   );
 };

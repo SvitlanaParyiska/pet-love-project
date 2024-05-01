@@ -37,3 +37,23 @@ export const addPetValidation = Yup.object({
     .matches(birthdayRegex, "Invalid birthday")
     .required("Birthday is required"),
 });
+
+export const modalUserSchema = Yup.object({
+  name: Yup.string().trim().required("Name is required"),
+  email: Yup.string()
+    .trim()
+    .matches(
+      /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
+      "Enter valid email"
+    )
+    .required("Email is required"),
+  avatar: Yup.string()
+    .trim()
+    .matches(
+      /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,
+      "Please choose your avatar"
+    ),
+  phone: Yup.string()
+    .trim()
+    .matches(/^\+38\d{10}$/, "Enter valid phone number"),
+});

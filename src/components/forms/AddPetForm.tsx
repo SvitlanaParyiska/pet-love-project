@@ -120,7 +120,6 @@ const AddPetForm = () => {
         }) => (
           <form
             onSubmit={handleSubmit}
-            noValidate
             className="desktop:w-[424px]"
           >
             <div className="flex mb-[10px] tablet:mb-[18px] gap-[8px]">
