@@ -36,5 +36,4 @@ export const addPetValidation = Yup.object({
   birthday: Yup.string()
     .matches(birthdayRegex, "Invalid birthday")
     .required("Birthday is required"),
-  sex: Yup.string().required("Sex is required"),
 });

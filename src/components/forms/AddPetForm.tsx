@@ -17,22 +17,29 @@ import { useState } from "react";
 const AddPetForm = () => {
   const dispatch = useAppDispatch();
   const speciesList = useAppSelector(selectNoticesSpecies);
-  const [sex, setSex] = useState<string>("");
+  const [checkboxField, setCheckboxField] = useState<string>("");
   const [selectField, setSelectField] = useState<string>("");
+  const [avatar, setAvatar] = useState<string>("");
 
   const handleSex = (item: string) => {
-    setSex(item);
+    setCheckboxField(item);
   };
 
   const handleSelectField = (item: string) => {
     setSelectField(item);
   };
 
+  const handleAvatarChange = (imgUrl: string) => {
+    if (imgUrl) {
+      setAvatar(imgUrl);
+    }
+  };
+
   return (
     <>
       <div className="flex gap-[8px] mb-[8px]">
         <button type="button" onClick={() => handleSex("female")}>
-          {sex === "female" ? (
+          {checkboxField === "female" ? (
             <svg aria-label="icon female" className="w-[32px] h-[32px]">
               <use href={`${sprite}#icon-female-active`} />
             </svg>
@@ -43,7 +50,7 @@ const AddPetForm = () => {
           )}
         </button>
         <button type="button" onClick={() => handleSex("male")}>
-          {sex === "male" ? (
+          {checkboxField === "male" ? (
             <svg aria-label="icon male" className="w-[32px] h-[32px] ">
               <use href={`${sprite}#icon-male-active`} />
             </svg>
@@ -54,7 +61,7 @@ const AddPetForm = () => {
           )}
         </button>
         <button type="button" onClick={() => handleSex("multiple")}>
-          {sex === "multiple" ? (
+          {checkboxField === "multiple" ? (
             <svg aria-label="icon multiple" className="w-[32px] h-[32px] ">
               <use href={`${sprite}#icon-multiple-active`} />
             </svg>
@@ -65,11 +72,14 @@ const AddPetForm = () => {
           )}
         </button>
       </div>
-      <div className=" mx-auto mb-[16px] w-[68px] h-[68px] rounded-full bg-light flex justify-center items-center">
-        {/* <img src='' /> */}
-        <svg aria-label="icon footprint" className="w-[32px] h-[32px] ">
-          <use href={`${sprite}#icon-footprint`} />
-        </svg>
+      <div className=" mx-auto mb-[16px] w-[68px] h-[68px] rounded-full overflow-hidden bg-light flex justify-center items-center">
+        {avatar ? (
+          <img src={avatar} alt="user avatar" />
+        ) : (
+          <svg aria-label="icon footprint" className="w-[32px] h-[32px] ">
+            <use href={`${sprite}#icon-footprint`} />
+          </svg>
+        )}
       </div>
 
       <Formik
@@ -81,8 +91,8 @@ const AddPetForm = () => {
         }}
         validationSchema={addPetValidation}
         onSubmit={async ({ title, name, imgUrl, birthday }, { resetForm }) => {
+          console.log("test");
           try {
-            console.log("test");
             await dispatch(
               addUserPet({
                 title,
@@ -90,7 +100,7 @@ const AddPetForm = () => {
                 imgUrl,
                 species: selectField,
                 birthday,
-                sex,
+                sex: checkboxField,
               })
             ).unwrap();
             resetForm();
@@ -113,6 +123,43 @@ const AddPetForm = () => {
             noValidate
             className="desktop:w-[424px]"
           >
+            <div className="flex mb-[10px] tablet:mb-[18px] gap-[8px]">
+              <Input
+                id="imgUrl"
+                type="text"
+                name="imgUrl"
+                value={values.imgUrl}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                placeholder="Enter URL"
+                inputStyles={clsx(
+                  "px-[12px] py-[12px] tablet:px-[16px] tablet:py-[16px] w-[170px]",
+                  touched.imgUrl && errors.imgUrl && "!border-red",
+                  touched.imgUrl && !errors.imgUrl && "!border-green"
+                )}
+                wrapperStyles={clsx(touched.imgUrl && errors.imgUrl ? "" : "")}
+              >
+                <IconValidation
+                  touched={touched.imgUrl}
+                  errors={errors.imgUrl}
+                />
+
+                {touched.imgUrl && errors.imgUrl ? (
+                  <AuthErrorMessage message={errors.imgUrl} />
+                ) : null}
+              </Input>
+              <button
+                type="button"
+                onClick={() => handleAvatarChange(values.imgUrl)}
+                className="flex items-center py-[10px] px-[7px] rounded-30 bg-light gap-[5px] text-12  leading-[1.33] tracking-[-0.02em]"
+              >
+                <p>Upload photo</p>
+                <svg className="w-[16px] h-[16px]">
+                  <use href={`${sprite}#icon-upload-cloud`}></use>
+                </svg>
+              </button>
+            </div>
+
             <Input
               id="title"
               type="text"
@@ -138,7 +185,7 @@ const AddPetForm = () => {
                 <AuthErrorMessage message={errors.title} />
               ) : null}
             </Input>
-            <img src="" />
+
             <Input
               id="name"
               type="text"
