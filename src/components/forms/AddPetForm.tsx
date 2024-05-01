@@ -100,7 +100,7 @@ const AddPetForm = () => {
               addUserPet({
                 title,
                 name,
-                imgUrl,
+                imgURL: imgUrl,
                 species: selectField,
                 birthday,
                 sex: checkboxField,

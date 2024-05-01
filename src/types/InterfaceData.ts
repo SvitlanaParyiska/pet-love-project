@@ -8,7 +8,7 @@ export interface EditUserForm {
 export interface AddPet {
   name: string;
   title: string;
-  imgUrl: string;
+  imgURL: string;
   species: string;
   birthday: string;
   sex: string;

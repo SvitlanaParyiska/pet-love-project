@@ -26,7 +26,8 @@ export default {
       bgAccent: "rgba(255, 255, 255, 0.1)",
       red: "#ef2447",
       green: "#08aa83",
-      rose:" #f43f5e",
+      rose: " #f43f5e",
+      backdrop:"rgba(38, 38, 38, 0.3)",
     },
     screens: {
       sm: { max: "374px" },

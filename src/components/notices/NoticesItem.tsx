@@ -130,12 +130,12 @@ const NoticesItem = ({ item }: NoticeProps) => {
       </li>
       {modalNoticeItem && (
         <PortalModal handleModal={handleModalNoticeItem}>
-          <ModalNotice  item={item} />
+          <ModalNotice item={item} />
         </PortalModal>
       )}
       {modalError && (
         <PortalModal handleModal={handleModalError}>
-          <ModalAttention closeModalAttention={handleModalError} />
+          <ModalAttention />
         </PortalModal>
       )}
     </>
