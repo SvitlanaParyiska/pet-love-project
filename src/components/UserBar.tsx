@@ -14,7 +14,7 @@ function UserBar() {
     <Link to="/profile" className="ml-[8px] flex items-center gap-[8px]">
       <div className="w-[50px] h-[50px] rounded-full bg-light overflow-hidden flex justify-center items-center">
         {userPhoto ? (
-          <img />
+          <img src={userPhoto} alt="user avatar" />
         ) : (
           <svg className="w-[24px] h-[24px]">
             <use href={`${sprite}#icon-user`}></use>

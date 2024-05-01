@@ -10,7 +10,7 @@ export const handleRejected = (
   action: PayloadAction<AppState>
 ) => {
   state.isLoading = false;
-  state.error = action.payload;
+  state.error = action.payload.error;
 };
 export const handleFulfilled = (state: AppState) => {
   state.isLoading = false;

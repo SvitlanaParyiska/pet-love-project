@@ -28,7 +28,6 @@ const LoginForm = () => {
         }
         try {
           await dispatch(signIn({ email, password })).unwrap();
-
           resetForm();
         } catch (error) {
           toast.error(error as string);

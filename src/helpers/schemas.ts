@@ -32,7 +32,7 @@ export const addPetValidation = Yup.object({
   imgUrl: Yup.string()
     .matches(imageUrlRegex, "Invalid Url")
     .required("Photo is required"),
-  species: Yup.string().required("Species is required"),
+  // species: Yup.string().required("Species is required"),
   birthday: Yup.string()
     .matches(birthdayRegex, "Invalid birthday")
     .required("Birthday is required"),

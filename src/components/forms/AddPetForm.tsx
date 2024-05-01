@@ -91,7 +91,10 @@ const AddPetForm = () => {
         }}
         validationSchema={addPetValidation}
         onSubmit={async ({ title, name, imgUrl, birthday }, { resetForm }) => {
-          console.log("test");
+          if (!checkboxField.trim()) {
+            toast.error("fill in sex");
+            return;
+          }
           try {
             await dispatch(
               addUserPet({
@@ -118,10 +121,7 @@ const AddPetForm = () => {
           handleBlur,
           handleSubmit,
         }) => (
-          <form
-            onSubmit={handleSubmit}
-            className="desktop:w-[424px]"
-          >
+          <form onSubmit={handleSubmit} className="desktop:w-[424px]">
             <div className="flex mb-[10px] tablet:mb-[18px] gap-[8px]">
               <Input
                 id="imgUrl"
@@ -212,19 +212,35 @@ const AddPetForm = () => {
             </Input>
             <div className="flex gap-[12px] mb-[31px] tablet:mb-[40px]">
               <div className="relative">
-                <svg className="absolute pointer-events-none top-[17px] right-[13px] w-[18px] h-[18px] stroke-midnight fill-white">
-                  <use href={`${sprite}#icon-calendar`}></use>
-                </svg>
-                <input
+                <Input
                   id="birthday"
+                  type="text"
                   name="birthday"
-                  type="date"
-                  required
+                  value={values.birthday}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.birthday}
-                  className="w-[144px] p-[12px] cursor-pointer border-1 border-grey rounded-30"
-                />
+                  placeholder="0000-00-00"
+                  inputStyles={clsx(
+                    "px-[12px] py-[12px] tablet:px-[16px] tablet:py-[16px] w-[170px]",
+                    touched.birthday && errors.birthday && "!border-red",
+                    touched.birthday && !errors.birthday && "!border-green"
+                  )}
+                  wrapperStyles={clsx(
+                    touched.birthday && errors.birthday ? "" : ""
+                  )}
+                >
+                  <IconValidation
+                    touched={touched.birthday}
+                    errors={errors.birthday}
+                  />
+
+                  {touched.birthday && errors.birthday ? (
+                    <AuthErrorMessage message={errors.birthday} />
+                  ) : null}
+                </Input>
+                <svg className="absolute pointer-events-none top-[12px] right-[12px] w-[18px] h-[18px] stroke-midnight fill-white">
+                  <use href={`${sprite}#icon-calendar`}></use>
+                </svg>
               </div>
               <Select
                 options={getOptions(speciesList, "")}
@@ -246,7 +262,7 @@ const AddPetForm = () => {
                     fontWeight: 500,
                     fontSize: "14px",
                     width: "143px",
-                    padding: "8px",
+                    padding: "2px",
                   }),
                 }}
               />

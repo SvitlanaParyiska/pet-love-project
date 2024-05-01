@@ -18,7 +18,9 @@ function MyNotices() {
           type="button"
           className={clsx(
             "p-[12px] tablet:p-[14px] rounded-30 text-14 tablet:text-16 leading-[1.29] tablet:leading-[1.25] tracking-[-0.03em]",
-            activeButton === "fav" ? "bg-accent text-white" : "bg-transparent"
+            activeButton === "fav"
+              ? "bg-accent text-white transition-all duration-350 active:bg-buttonAccent focus:bg-buttonAccent hover:bg-buttonAccent"
+              : "bg-transparent"
           )}
           onClick={() => handleActive("fav")}
         >
@@ -29,7 +31,7 @@ function MyNotices() {
           className={clsx(
             "p-[12px] tablet:p-[14px] rounded-30 text-14 tablet:text-16 leading-[1.29] tablet:leading-[1.25] tracking-[-0.03em]",
             activeButton === "viewed"
-              ? "bg-accent text-white"
+              ? "bg-accent text-white transition-all duration-350 active:bg-buttonAccent focus:bg-buttonAccent hover:bg-buttonAccent"
               : "bg-transparent"
           )}
           onClick={() => handleActive("viewed")}
