@@ -28,6 +28,7 @@ export interface NoticeProps {
 
 const NoticesItem = ({ item }: NoticeProps) => {
   const isAuth = useAppSelector(selectIsLoggedIn);
+
   const [modalNoticeItem, setModalNoticeItem] = useState<boolean>(false);
   const [modalError, setModalError] = useState<boolean>(false);
 
@@ -43,6 +44,8 @@ const NoticesItem = ({ item }: NoticeProps) => {
       handleModalNoticeItem();
     } else handleModalError();
   };
+
+  const handleFavorite = () => {};
 
   return (
     <>
@@ -121,7 +124,11 @@ const NoticesItem = ({ item }: NoticeProps) => {
           >
             Learn more
           </button>
-          <button type="button" className="rounded-full p-[14px] bg-light">
+          <button
+            type="button"
+            onClick={handleFavorite}
+            className="rounded-full p-[14px] bg-light"
+          >
             <svg aria-label="star" className="w-[18px] h-[18px]">
               <use href={`${sprite}#icon-heart`} />
             </svg>

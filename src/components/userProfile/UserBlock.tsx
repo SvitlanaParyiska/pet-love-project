@@ -1,18 +1,14 @@
 import { useAppSelector } from "../../hooks/useReduxHooks";
-import {
-  selectFullUser,
-  selectUserAvatar,
-} from "../../redux/user/userSelectors";
+import { selectFullUser } from "../../redux/user/userSelectors";
 import sprite from "/images/sprite.svg";
 
 const UserBlock = () => {
-  const userPhoto = useAppSelector(selectUserAvatar);
   const userInfo = useAppSelector(selectFullUser);
 
   return (
     <>
       <div className="mx-auto w-[94px] h-[94px] rounded-full bg-light overflow-hidden flex justify-center items-center">
-        {userPhoto ? (
+        {userInfo.avatar ? (
           <img src={userInfo.avatar} />
         ) : (
           <svg className="w-[40px] h-[40px]">
@@ -20,7 +16,7 @@ const UserBlock = () => {
           </svg>
         )}
       </div>
-      {!userPhoto && (
+      {!userInfo.avatar && (
         <button
           type="button"
           className="block mx-auto mt-[8px] text-12 leading-[1.33] tracking-[-0.02em] underline"

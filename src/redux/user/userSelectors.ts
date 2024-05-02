@@ -10,6 +10,12 @@ export const selectUserName = (state: { auth: UserState }) =>
 export const selectUserAvatar = (state: { auth: UserState }) =>
   state.auth.user.avatar;
 
+export const selectUserFavorites = (state: { auth: UserState }) =>
+  state.auth.user.noticesFavorites;
+
+export const selectUserViewed = (state: { auth: UserState }) =>
+  state.auth.user.noticesViewed;
+
 export const selectIsLoggedIn = (state: { auth: UserState }) =>
   state.auth.isLoggedIn;
 
