@@ -10,14 +10,14 @@ const PetsList = () => {
   return (
     <>
       {userPets && userPets?.length > 0 ? (
-        <ul className="mt-[20px] mb-[20px]">
+        <ul className="mt-[20px] mb-[20px] tablet:flex tablet:flex-wrap desktop:block justify-center">
           {userPets?.map((pet) => (
             <PetsItem pet={pet} key={nanoid()} />
           ))}
         </ul>
       ) : (
         <p className="mt-[20px] mb-[20px] text-14 leading-[1.33] tracking-[-0.02em]">
-          Your pets list is empty.{" "}
+          Your pets list is empty.
           <Link
             to="/add-pet"
             className="text-accent text-14  underline  leading-[1.33] tracking-[-0.02em]"
