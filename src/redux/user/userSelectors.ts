@@ -13,6 +13,9 @@ export const selectUserAvatar = (state: { auth: UserState }) =>
 export const selectUserFavorites = (state: { auth: UserState }) =>
   state.auth.user.noticesFavorites;
 
+export const selectUserFavoritesId = (state: { auth: UserState }) =>
+  state.auth.user.favId;
+
 export const selectUserViewed = (state: { auth: UserState }) =>
   state.auth.user.noticesViewed;
 

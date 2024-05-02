@@ -12,7 +12,7 @@ function UserBar() {
 
   return (
     <Link to="/profile" className="ml-[8px] flex items-center gap-[8px]">
-      <div className="w-[50px] h-[50px] rounded-full bg-light overflow-hidden flex justify-center items-center">
+      <div className="w-[50px] h-[50px] rounded-full bg-light transition-all duration-350 active:bg-buttonHover focus:bg-buttonHover hover:bg-buttonHover overflow-hidden flex justify-center items-center">
         {userPhoto ? (
           <img src={userPhoto} alt="user avatar" />
         ) : (

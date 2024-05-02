@@ -5,6 +5,7 @@ export interface User {
   avatar: string;
   noticesViewed: Item[] | [];
   noticesFavorites: Item[] | [];
+  favId: string[] | [];
   pets?: [];
 }
 

@@ -103,7 +103,7 @@ const NoticesPage = () => {
 
   return (
     <main>
-      <div className="container pb-[32px] pt-[20px] desktop:px-[63px]">
+      <div className="container pb-[32px] pt-[20px] tablet:pt-[53px] tablet:pb-[88px] desktop:pb-[80px] desktop:pt-[64px]">
         <Title text="Find your favorite pet" />
         <NoticesFilters
           handleFilter={handleFilter}

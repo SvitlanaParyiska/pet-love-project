@@ -12,7 +12,7 @@ import {
   addUserNotice,
   deleteUserNotice,
 } from "./userOperation";
-import { UserState } from "../../types/auth";
+import { Item, UserState } from "../../types/auth";
 
 const initialState: UserState = {
   user: {
@@ -22,6 +22,7 @@ const initialState: UserState = {
     avatar: "",
     noticesViewed: [],
     noticesFavorites: [],
+    favId: [],
     pets: [],
   },
   token: null,
@@ -61,48 +62,52 @@ const userSlice = createSlice({
       .addCase(userRefresh.rejected, (state) => {
         state.isRefreshing = false;
       })
-      .addCase(userRefresh.fulfilled, (state, action) => {
-        state.user.email = action.payload.email;
-        state.user.name = action.payload.name;
-        state.token = action.payload.token;
-        state.user.noticesFavorites = action.payload.noticesFavorites || [];
+      .addCase(userRefresh.fulfilled, (state, { payload }) => {
+        state.user.email = payload.email;
+        state.user.name = payload.name;
+        state.token = payload.token;
+        state.user.noticesFavorites = payload.noticesFavorites || [];
+        state.user.favId = payload.noticesFavorites.map(
+          (item: Item) => item._id
+        );
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
-      .addCase(getFullCurrentUser.fulfilled, (state, action) => {
-        state.user.email = action.payload.email;
-        state.user.name = action.payload.name;
-        state.token = action.payload.token;
-        state.user.avatar = action.payload.avatar;
-        state.user.phone = action.payload.phone;
-        state.user.noticesFavorites = action.payload.noticesFavorites || [];
-        state.user.noticesViewed = action.payload.noticesViewed || [];
-        state.user.pets = action.payload.pets || [];
+      .addCase(getFullCurrentUser.fulfilled, (state, { payload }) => {
+        state.user.email = payload.email;
+        state.user.name = payload.name;
+        state.token = payload.token;
+        state.user.avatar = payload.avatar;
+        state.user.phone = payload.phone;
+        state.user.noticesFavorites = payload.noticesFavorites || [];
+        state.user.noticesViewed = payload.noticesViewed || [];
+        state.user.favId = payload.noticesFavorites.map(
+          (item: Item) => item._id
+        );
+        state.user.pets = payload.pets || [];
         state.isLoggedIn = true;
       })
-      .addCase(editUser.fulfilled, (state, action) => {
-        state.user.email = action.payload.email;
-        state.user.name = action.payload.name;
-        state.token = action.payload.token;
-        state.user.noticesFavorites = action.payload.noticesFavorites || [];
-        state.user.pets = action.payload.pets || [];
-        state.isLoggedIn = true;
+      .addCase(editUser.fulfilled, (state, { payload }) => {
+        state.user.email = payload.email;
+        state.user.name = payload.name;
+        state.token = payload.token;
+        state.user.noticesFavorites = payload.noticesFavorites || [];
+        state.user.favId = payload.noticesFavorites.map(
+          (item: Item) => item._id
+        );
+        state.user.pets = payload.pets || [];
       })
-      .addCase(addUserPet.fulfilled, (state, action) => {
-        state.user.pets = action.payload.pets || [];
-        state.isLoggedIn = true;
+      .addCase(addUserPet.fulfilled, (state, { payload }) => {
+        state.user.pets = payload.pets || [];
       })
-      .addCase(deleteUserPet.fulfilled, (state, action) => {
-        state.user.pets = action.payload.pets || [];
-        state.isLoggedIn = true;
+      .addCase(deleteUserPet.fulfilled, (state, { payload }) => {
+        state.user.pets = payload.pets || [];
       })
-      .addCase(addUserNotice.fulfilled, (state, action) => {
-        state.user.noticesFavorites = action.payload.noticesFavorites || [];
-        state.isLoggedIn = true;
+      .addCase(addUserNotice.fulfilled, (state, { payload }) => {
+        state.user.favId = payload || [];
       })
-      .addCase(deleteUserNotice.fulfilled, (state, action) => {
-        state.user.noticesFavorites = action.payload.noticesFavorites || [];
-        state.isLoggedIn = true;
+      .addCase(deleteUserNotice.fulfilled, (state, { payload }) => {
+        state.user.favId = payload || [];
       });
   },
 });

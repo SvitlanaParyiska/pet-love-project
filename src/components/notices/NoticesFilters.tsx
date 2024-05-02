@@ -2,7 +2,7 @@ import { useAppSelector } from "../../hooks/useReduxHooks";
 import {
   // selectCities,
   selectNoticesCategories,
-  selectNoticesSex,
+  // selectNoticesSex,
   selectNoticesSpecies,
 } from "../../redux/dataBase/dataBaseSelectors";
 import SearchField from "../SearchField";
@@ -34,10 +34,10 @@ const NoticesFilters = ({
   handleLocationId,
   handleByPrice,
   handleByPopularity,
-  handleGender,
-}: NoticesFiltersProps) => {
+}: // handleGender,
+NoticesFiltersProps) => {
   const categoryList = useAppSelector(selectNoticesCategories);
-  const genderList = useAppSelector(selectNoticesSex);
+  // const genderList = useAppSelector(selectNoticesSex);
   const speciesList = useAppSelector(selectNoticesSpecies);
   // const citiesList = useAppSelector(selectCities);
 
@@ -50,17 +50,20 @@ const NoticesFilters = ({
   //     ),
   //   [citiesList]
   // );
+  const breakpoints = [375, 768, 1280];
+
+  const mq = breakpoints.map((bp) => `@media (min-width: ${bp}px)`);
 
   return (
-    <div className="p-[20px] bg-light rounded-30 mt-[40px]">
-      <div className="desktop:flex desktop:gap-[16px]">
-        <div className="tablet:flex tablet:gap-[16px]">
+    <div className="mt-[20px] px-[20px] py-[20px] tablet:pt-[40px] tablet:pb-[50px] tablet:mt-[44px] bg-light rounded-30 ">
+      <div className="desktop:flex desktop:gap-[16px] items-center">
+        <div className="tablet:flex tablet:gap-[16px] items-center">
           <SearchField
             handleFilter={handleFilter}
             resetFilter={resetFilter}
             color={"white"}
           />
-          <div className="flex gap-[8px] tablet:gap-[16px] my-[12px]">
+          <div className="my-[12px]">
             <Select
               options={getOptions(categoryList, "Show all")}
               aria-label="Category"
@@ -78,11 +81,18 @@ const NoticesFilters = ({
                   fontFamily: "inherit",
                   fontWeight: 500,
                   fontSize: "14px",
-                  width: "143px",
+                  borderColor: "rgba(38, 38, 38, 0.15)",
+                  padding: "2px",
+                  [mq[1]]: {
+                    width: "143px",
+                  },
+                  [mq[1]]: {
+                    padding: "5px",
+                  },
                 }),
               }}
             />
-            <Select
+            {/* <Select
               options={getOptions(genderList, "Show all")}
               aria-label="Gender"
               placeholder="By gender"
@@ -98,14 +108,19 @@ const NoticesFilters = ({
                   color: "#262626",
                   fontFamily: "inherit",
                   fontWeight: 500,
+                   borderColor: "rgba(38, 38, 38, 0.15)",
                   fontSize: "14px",
                   width: "143px",
+                   padding: "2px",
+                [mq[1]]: {
+                  padding: "5px",
+                },
                 }),
               }}
-            />
+            /> */}
           </div>
         </div>
-        <div className="tablet:flex tablet:gap-[16px]">
+        <div className="tablet:flex tablet:gap-[16px] items-center">
           <Select
             options={getOptions(speciesList, "Show all")}
             aria-label="Species"
@@ -119,6 +134,7 @@ const NoticesFilters = ({
               control: (baseStyles) => ({
                 ...baseStyles,
                 borderRadius: "30px",
+                borderColor: "rgba(38, 38, 38, 0.15)",
                 color: "#262626",
                 fontFamily: "inherit",
                 fontWeight: 500,
@@ -126,6 +142,9 @@ const NoticesFilters = ({
                 letterSpacing: "-0.03em",
                 fontSize: "14px",
                 padding: "2px",
+                [mq[1]]: {
+                  padding: "5px",
+                },
               }),
             }}
           />
@@ -150,8 +169,9 @@ const NoticesFilters = ({
                 fontSize: "14px",
                 padding: "2px",
                 marginTop: "12px",
-                "@media (max-width: 500px)": {
-                  marginTop: "0",
+                [mq[1]]: {
+                  marginTop: "0px",
+                  padding: "5px",
                 },
               }),
             }}
@@ -159,7 +179,7 @@ const NoticesFilters = ({
         </div>
       </div>
 
-      <div className="mt-[20px] flex flex-wrap mb-[10px] pt-[20px] border-t-1 border-borderTop">
+      <div className="mt-[20px] flex flex-wrap mb-[10px] pt-[30px] border-t-1 border-borderTop">
         <fieldset id="group1" className="">
           <label>
             <input

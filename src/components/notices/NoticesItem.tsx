@@ -4,8 +4,16 @@ import sprite from "/images/sprite.svg";
 import ModalNotice from "../modals/ModalNotice";
 import PortalModal from "../modals/PortalModal";
 import ModalAttention from "../modals/ModalAttention";
-import { useAppSelector } from "../../hooks/useReduxHooks";
-import { selectIsLoggedIn } from "../../redux/user/userSelectors";
+import { useAppDispatch, useAppSelector } from "../../hooks/useReduxHooks";
+import {
+  selectIsLoggedIn,
+  selectUserFavoritesId,
+} from "../../redux/user/userSelectors";
+import {
+  addUserNotice,
+  deleteUserNotice,
+} from "../../redux/user/userOperation";
+import toast from "react-hot-toast";
 
 export interface NoticeProps {
   item: {
@@ -27,10 +35,18 @@ export interface NoticeProps {
 }
 
 const NoticesItem = ({ item }: NoticeProps) => {
+  const dispatch = useAppDispatch();
   const isAuth = useAppSelector(selectIsLoggedIn);
+  const favList = useAppSelector(selectUserFavoritesId);
 
   const [modalNoticeItem, setModalNoticeItem] = useState<boolean>(false);
   const [modalError, setModalError] = useState<boolean>(false);
+
+  const favIs = favList.find((favItem) => favItem === item._id);
+  let fav = false;
+  if (favIs) {
+    fav = true;
+  }
 
   const handleModalNoticeItem = () => {
     setModalNoticeItem((state: boolean) => !state);
@@ -45,7 +61,19 @@ const NoticesItem = ({ item }: NoticeProps) => {
     } else handleModalError();
   };
 
-  const handleFavorite = () => {};
+  const handleFavorite = () => {
+    if (!isAuth) {
+      handleModalError();
+      return;
+    }
+    if (fav) {
+      dispatch(deleteUserNotice(item._id));
+      toast.success("Notice successful deleted!");
+    } else {
+      dispatch(addUserNotice(item._id));
+      toast.success("Notice successful added!");
+    }
+  };
 
   return (
     <>
@@ -120,18 +148,27 @@ const NoticesItem = ({ item }: NoticeProps) => {
           <button
             type="button"
             onClick={learnMore}
-            className="px-[78px] tablet:px-[76px] py-[14px] rounded-30 bg-accent text-14 tablet:text-16 leading-[1.29] tracking-[-0.03em] text-white"
+            className="px-[78px] tablet:px-[76px] py-[14px] rounded-30 bg-accent transition-all duration-350 active:bg-buttonAccent focus:bg-buttonAccent hover:bg-buttonAccent text-14 tablet:text-16 leading-[1.29] tracking-[-0.03em] text-white"
           >
             Learn more
           </button>
           <button
             type="button"
             onClick={handleFavorite}
-            className="rounded-full p-[14px] bg-light"
+            className="rounded-full p-[14px] bg-light transition-all duration-350 active:bg-buttonHover focus:bg-buttonHover hover:bg-buttonHover"
           >
-            <svg aria-label="star" className="w-[18px] h-[18px]">
-              <use href={`${sprite}#icon-heart`} />
-            </svg>
+            {fav ? (
+              <svg
+                aria-label="star"
+                className="w-[18px] h-[18px] fill-accent stroke-accent"
+              >
+                <use href={`${sprite}#icon-heart-active`} />
+              </svg>
+            ) : (
+              <svg aria-label="star" className="w-[18px] h-[18px]">
+                <use href={`${sprite}#icon-heart`} />
+              </svg>
+            )}
           </button>
         </div>
       </li>

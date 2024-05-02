@@ -36,7 +36,7 @@ function MyNotices() {
           )}
           onClick={() => handleActive("viewed")}
         >
-          My favorite pets
+          Viewed
         </button>
       </div>
       {activeButton === "fav" &&
