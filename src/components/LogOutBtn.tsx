@@ -1,6 +1,6 @@
-import { useAppDispatch } from "../hooks/useReduxHooks";
-import { logOut } from "../redux/user/userOperation";
-import { resetStore } from "../redux/user/userSlice";
+import { useState } from "react";
+import PortalModal from "./modals/PortalModal";
+import ModalApproveAction from "./modals/ModalApproveAction";
 
 interface Color {
   white: string;
@@ -18,6 +18,8 @@ interface LogOutBtnProps {
 }
 
 function LogOutBtn({ size, color }: LogOutBtnProps) {
+  const [modalApprove, setModalApprove] = useState<boolean>(false);
+
   const colorVariants = {
     white: "bg-light hover:bg-buttonHover text-accent",
     accent: "bg-accent hover:bg-buttonAccent text-white",
@@ -29,23 +31,27 @@ function LogOutBtn({ size, color }: LogOutBtnProps) {
     tablet: "py-[15px] px-[35px] w-[142px] leading-tight tracking-[-0.03em]",
   };
 
-  const dispatch = useAppDispatch();
-
-  const handleLogOut = () => {
-    dispatch(logOut());
-    dispatch(resetStore());
+  const handleModalApprove = () => {
+    setModalApprove((state: boolean) => !state);
   };
 
   return (
-    <button
-      type="button"
-      onClick={handleLogOut}
-      className={`${colorVariants[color as keyof Color]}  ${
-        sizeVariants[size as keyof Size]
-      } border-1 rounded-30 text-14 tablet:text-16 flex justify-center items-center`}
-    >
-      LOG OUT
-    </button>
+    <>
+      <button
+        type="button"
+        onClick={handleModalApprove}
+        className={`${colorVariants[color as keyof Color]}  ${
+          sizeVariants[size as keyof Size]
+        } border-1 rounded-30 text-14 tablet:text-16 flex justify-center items-center`}
+      >
+        LOG OUT
+      </button>
+      {modalApprove && (
+        <PortalModal handleModal={handleModalApprove}>
+          <ModalApproveAction handleModal={handleModalApprove} />
+        </PortalModal>
+      )}
+    </>
   );
 }
 
