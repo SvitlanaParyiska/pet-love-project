@@ -45,7 +45,7 @@ function FriendsItem({ friend }: FriendsProps) {
           <span className="text-midnight truncate ...">
             {friend.address ? (
               <a
-                href={friend.address}
+                href={friend.addressUrl}
                 target="_blank"
                 rel="noreferrer noopener nofollow"
               >

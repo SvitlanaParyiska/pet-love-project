@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { KeyboardEvent, MouseEvent, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useAppSelector } from "../hooks/useReduxHooks";
 import { selectIsLoggedIn } from "../redux/user/userSelectors";
 import LogOutBtn from "./LogOutBtn";
@@ -13,6 +13,7 @@ interface MobileMenuProps {
 
 const BurgerMenu = ({ isMenuOpen, toggleMenu }: MobileMenuProps) => {
   const isAuth = useAppSelector(selectIsLoggedIn);
+  const currentUrl = useLocation();
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -72,19 +73,28 @@ const BurgerMenu = ({ isMenuOpen, toggleMenu }: MobileMenuProps) => {
             <div className="flex flex-col gap-[10px] items-center">
               <NavLink
                 to="/news"
-                className="px-[20px] py-[15px] w-[123px] h-[49px] border-1 rounded-30 border-medgrey active:border-lightgrey focus:border-lightgrey hover:border-lightgrey text-14 tablet:text-16 text-white tracking-[-0.03em] flex justify-center items-center leading-[1.29] tablet:leading-tight"
+                className={clsx(
+                  currentUrl.pathname === "/news" ? "border-white" : "",
+                  "w-[120px] h-[49px] border-1 rounded-30 border-medgrey active:border-lightgrey focus:border-lightgrey hover:border-lightgrey text-14 tablet:text-16 text-white tracking-[-0.03em] flex justify-center items-center leading-[1.29] tablet:leading-tight"
+                )}
               >
                 News
               </NavLink>
               <NavLink
                 to="/notices"
-                className="px-[20px] py-[15px] w-[123px] h-[49px] border-1 rounded-30 border-medgrey active:border-lightgrey focus:border-lightgrey hover:border-lightgrey text-14 tablet:text-16 text-white tracking-[-0.03em] flex justify-center items-center leading-[1.29] tablet:leading-tight"
+                className={clsx(
+                  currentUrl.pathname === "/notices" ? "border-white" : "",
+                  " w-[120px] h-[49px] border-1 rounded-30 border-medgrey active:border-lightgrey focus:border-lightgrey hover:border-lightgrey text-14 tablet:text-16 text-white tracking-[-0.03em] flex justify-center items-center leading-[1.29] tablet:leading-tight"
+                )}
               >
                 Find pet
               </NavLink>
               <NavLink
                 to="/friends"
-                className="px-[20px] py-[15px] w-[128px] h-[49px] border-1 rounded-30 border-medgrey active:border-lightgrey focus:border-lightgrey hover:border-lightgrey text-14 tablet:text-16 text-white tracking-[-0.03em] flex justify-center items-center leading-[1.29] tablet:leading-tight"
+                className={clsx(
+                  currentUrl.pathname === "/friends" ? "border-white" : "",
+                  "w-[120px] h-[49px] border-1 rounded-30 border-medgrey active:border-lightgrey focus:border-lightgrey hover:border-lightgrey text-14 tablet:text-16 text-white tracking-[-0.03em] flex justify-center items-center leading-[1.29] tablet:leading-tight"
+                )}
               >
                 Our friends
               </NavLink>

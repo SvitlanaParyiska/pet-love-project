@@ -9,6 +9,7 @@ function Nav() {
       <NavLink
         to="/news"
         className={clsx(
+          currentUrl.pathname === "/news" ? "border-accent" : "",
           "px-[19px] py-[14px] border-1 rounded-30 leading-tight tracking-[-0.03em]",
           currentUrl.pathname === "/"
             ? "border-lightAccent text-white active:bg-light active:text-accent focus:bg-light focus:text-accent hover:bg-light hover:text-accent"
@@ -20,6 +21,7 @@ function Nav() {
       <NavLink
         to="/notices"
         className={clsx(
+          currentUrl.pathname === "/notices" ? "border-accent" : "",
           "px-[19px] py-[14px] border-1 rounded-30 leading-tight tracking-[-0.03em]",
           currentUrl.pathname === "/"
             ? "border-lightAccent text-white active:bg-light active:text-accent focus:bg-light focus:text-accent hover:bg-light hover:text-accent"
@@ -31,6 +33,7 @@ function Nav() {
       <NavLink
         to="/friends"
         className={clsx(
+          currentUrl.pathname === "/friends" ? "border-accent" : "",
           "px-[19px] py-[14px] border-1 rounded-30 leading-tight tracking-[-0.03em]",
           currentUrl.pathname === "/"
             ? "border-lightAccent text-white active:bg-light active:text-accent focus:bg-light focus:text-accent hover:bg-light hover:text-accent"
