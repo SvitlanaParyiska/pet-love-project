@@ -33,7 +33,7 @@ const NewsPage = () => {
 
   return (
     <main>
-      <div className="container pb-[32px] pt-[20px] tablet:pt-[53px] tablet:pb-[80px] desktop:pt-[64px]">
+      <div className="container pb-[32px] pt-[20px] tablet:pt-[53px] tablet:pb-[80px] desktop:pt-[64px] desktop:px-[64px]">
         <div className="flex flex-col gap-[20px] tablet:flex-row tablet:justify-between tablet:items-end tablet:mb-[44px] desktop:mb-[60px]">
           <Title text="News" />
           <SearchField

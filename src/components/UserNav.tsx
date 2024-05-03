@@ -7,7 +7,7 @@ function UserNav() {
   const currentUrl = useLocation();
 
   return (
-    <>
+    <div className="flex items-center gap-[8px]">
       <MediaQuery minWidth={768}>
         {currentUrl.pathname === "/" ? (
           <></>
@@ -23,7 +23,7 @@ function UserNav() {
         )}
       </MediaQuery>
       <UserBar />
-    </>
+    </div>
   );
 }
 

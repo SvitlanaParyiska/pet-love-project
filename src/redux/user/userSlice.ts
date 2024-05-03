@@ -107,7 +107,11 @@ const userSlice = createSlice({
         state.user.favId = payload || [];
       })
       .addCase(deleteUserNotice.fulfilled, (state, { payload }) => {
-        state.user.favId = payload || [];
+        state.user.favId = payload.data || [];
+        const indexFav = state.user.noticesFavorites.findIndex(
+          (item) => item._id === payload.id
+        );
+        state.user.noticesFavorites.splice(indexFav, 1);
       });
   },
 });

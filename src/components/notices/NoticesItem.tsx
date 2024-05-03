@@ -14,6 +14,7 @@ import {
   deleteUserNotice,
 } from "../../redux/user/userOperation";
 import toast from "react-hot-toast";
+import clsx from "clsx";
 
 export interface NoticeProps {
   item: {
@@ -32,13 +33,13 @@ export interface NoticeProps {
     popularity: number;
     updatedAt?: string;
   };
+  page: string;
 }
 
-const NoticesItem = ({ item }: NoticeProps) => {
+const NoticesItem = ({ item, page }: NoticeProps) => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(selectIsLoggedIn);
   const favList = useAppSelector(selectUserFavoritesId);
-
   const [modalNoticeItem, setModalNoticeItem] = useState<boolean>(false);
   const [modalError, setModalError] = useState<boolean>(false);
 
@@ -77,7 +78,14 @@ const NoticesItem = ({ item }: NoticeProps) => {
 
   return (
     <>
-      <li className="w-full tablet:w-[342px] desktop:w-[363px] h-[430px] p-[24px] flex flex-col justify-between bg-white rounded-16">
+      <li
+        className={clsx(
+          "w-full tablet:w-[342px]  h-[430px]  flex flex-col justify-between bg-white rounded-16",
+          page === "notice"
+            ? "p-[24px] desktop:w-[362px] "
+            : "p-[14px] desktop:w-[320px]"
+        )}
+      >
         <div>
           <img
             src={item.imgURL}
@@ -98,7 +106,7 @@ const NoticesItem = ({ item }: NoticeProps) => {
             </div>
           </div>
 
-          <div className="mb-[16px] flex gap-[14px]">
+          <div className="mb-[16px] flex gap-[14px] flex-wrap">
             <div>
               <p className="mb-[2px] text-10 text-darkGrey leading-[1.4] tracking-[-0.02em]">
                 Name
@@ -148,25 +156,34 @@ const NoticesItem = ({ item }: NoticeProps) => {
           <button
             type="button"
             onClick={learnMore}
-            className="px-[78px] tablet:px-[76px] py-[14px] rounded-30 bg-accent transition-all duration-350 active:bg-buttonAccent focus:bg-buttonAccent hover:bg-buttonAccent text-14 tablet:text-16 leading-[1.29] tracking-[-0.03em] text-white"
+            className="w-full py-[14px] rounded-30 bg-accent transition-all duration-350 active:bg-buttonAccent focus:bg-buttonAccent hover:bg-buttonAccent text-14 tablet:text-16 leading-[1.29] tracking-[-0.03em] text-white"
           >
             Learn more
           </button>
           <button
             type="button"
             onClick={handleFavorite}
-            className="rounded-full p-[14px] bg-light transition-all duration-350 active:bg-buttonHover focus:bg-buttonHover hover:bg-buttonHover"
+            className="rounded-full p-[14px]  bg-light transition-all duration-350 active:bg-buttonHover  hover:bg-buttonHover"
           >
-            {fav ? (
+            {page === "notice" &&
+              (fav ? (
+                <svg
+                  aria-label="star"
+                  className="w-[18px] h-[18px] fill-accent stroke-accent"
+                >
+                  <use href={`${sprite}#icon-heart-active`} />
+                </svg>
+              ) : (
+                <svg aria-label="star" className="w-[18px] h-[18px]">
+                  <use href={`${sprite}#icon-heart`} />
+                </svg>
+              ))}
+            {page === "noticeFav" && (
               <svg
                 aria-label="star"
                 className="w-[18px] h-[18px] fill-accent stroke-accent"
               >
-                <use href={`${sprite}#icon-heart-active`} />
-              </svg>
-            ) : (
-              <svg aria-label="star" className="w-[18px] h-[18px]">
-                <use href={`${sprite}#icon-heart`} />
+                <use href={`${sprite}#icon-trash`} />
               </svg>
             )}
           </button>
@@ -174,7 +191,7 @@ const NoticesItem = ({ item }: NoticeProps) => {
       </li>
       {modalNoticeItem && (
         <PortalModal handleModal={handleModalNoticeItem}>
-          <ModalNotice item={item} />
+          <ModalNotice item={item} fav={fav} handleFavorite={handleFavorite} />
         </PortalModal>
       )}
       {modalError && (

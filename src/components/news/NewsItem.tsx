@@ -14,7 +14,7 @@ interface NewsProps {
 
 function NewsItem({ item }: NewsProps) {
   return (
-    <li className="mobile:h-[379px] tablet:w-[340px] desktop:w-[361px] flex flex-col justify-between">
+    <li className="mobile:h-[379px] tablet:w-[340px] desktop:w-[360px] flex flex-col justify-between">
       <div>
         <img
           src={item.imgUrl}

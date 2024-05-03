@@ -16,7 +16,7 @@ const ProfilePage = () => {
         <section className="p-[20px] tablet:p-[40px] desktop:w-[520px]">
           <UserCard />
         </section>
-        <section className="pt-[40px] pb-[60px]">
+        <section className="pt-[40px] pb-[60px] desktop:w-[664px]">
           <MyNotices />
         </section>
       </div>

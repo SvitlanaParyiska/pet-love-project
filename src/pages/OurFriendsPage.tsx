@@ -13,7 +13,7 @@ const OurFriendsPage = () => {
 
   return (
     <main>
-      <div className="container pb-[32px] tablet:pt-[53px] tablet:pb-[80px] desktop:pt-[64px]">
+      <div className="container pb-[32px] tablet:pt-[53px] tablet:pb-[80px] desktop:pt-[64px] desktop:px-[64px]">
         <Title text="Our friends" />
         <FriendsList />
       </div>

@@ -18,9 +18,11 @@ interface ModalEditUser {
     popularity: number;
     updatedAt?: string;
   };
+  fav: boolean;
+  handleFavorite: () => void;
 }
 
-const ModalNotice = ({ item }: ModalEditUser) => {
+const ModalNotice = ({ item, fav, handleFavorite }: ModalEditUser) => {
   return (
     <div className="w-[330px] mx-auto">
       <img
@@ -37,11 +39,11 @@ const ModalNotice = ({ item }: ModalEditUser) => {
         </p>
       </div>
 
-      <h3 className="mb-[8px] font-bold text-textAccent tablet:text-18 leading-[1.25]tablet:leading-[1.33] ">
+      <h3 className="mb-[8px] font-bold text-center text-textAccent tablet:text-18 leading-[1.25]tablet:leading-[1.33] ">
         {item.title}
       </h3>
 
-      <div className="mb-[16px] flex gap-[14px]">
+      <div className="mb-[16px] flex justify-center gap-[14px]">
         <div>
           <p className="mb-[2px] text-10 text-darkGrey leading-[1.4] tracking-[-0.02em]">
             Name
@@ -83,21 +85,39 @@ const ModalNotice = ({ item }: ModalEditUser) => {
           </p>
         </div>
       </div>
-      <p className="mb-[40px] text-14 leading-[1.29] tracking-[-0.02em]">
+      <p className="mb-[40px] text-14 text-center leading-[1.29] tracking-[-0.02em]">
         {item.comment}
       </p>
       <div className="flex gap-[10px] justify-center">
+        {fav ? (
+          <button
+            type="button"
+            onClick={handleFavorite}
+            className="w-[160px] py-[14px] rounded-30 bg-accent transition-all duration-350 active:bg-buttonAccent focus:bg-buttonAccent hover:bg-buttonAccent text-16 tablet:text-16 leading-[1.25] tracking-[-0.03em] text-white flex gap-[8px] items-center justify-center"
+          >
+            <p>Delete </p>
+            <svg aria-label="heart" className="w-[18px] h-[18px]">
+              <use href={`${sprite}#icon-heart-white`} />
+            </svg>
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={handleFavorite}
+            className="w-[160px] py-[14px] rounded-30 bg-accent transition-all duration-350 active:bg-buttonAccent  hover:bg-buttonAccent text-16 tablet:text-16 leading-[1.25] tracking-[-0.03em] text-white flex gap-[8px] items-center justify-center"
+          >
+            <p>Add to</p>
+            <svg aria-label="heart" className="w-[18px] h-[18px]">
+              <use href={`${sprite}#icon-heart-white`} />
+            </svg>
+          </button>
+        )}
+
         <button
           type="button"
-          className="w-[160px] py-[14px] rounded-30 bg-accent text-16 tablet:text-16 leading-[1.25] tracking-[-0.03em] text-white"
+          className="w-[160px] rounded-30 p-[14px] bg-light  transition-all duration-350 active:bg-buttonHover  hover:bg-buttonHover text-16 tablet:text-16 leading-[1.25] tracking-[-0.03em] text-accent"
         >
-          Add to fav
-        </button>
-        <button
-          type="button"
-          className="w-[160px] rounded-30 p-[14px] bg-light  text-16 tablet:text-16 leading-[1.25] tracking-[-0.03em] text-accent"
-        >
-          Contact
+          <a href="tel:+380500000000">Contact</a>
         </button>
       </div>
     </div>

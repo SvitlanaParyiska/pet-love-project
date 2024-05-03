@@ -5,7 +5,7 @@ function Nav() {
   const currentUrl = useLocation();
 
   return (
-    <div className="flex gap-2.5 mr-[142px]">
+    <div className="flex gap-2.5 ">
       <NavLink
         to="/news"
         className={clsx(

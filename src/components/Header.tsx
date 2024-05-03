@@ -28,16 +28,16 @@ function Header() {
     >
       <div
         className={clsx(
-          "flex justify-between items-center",
+          "flex items-center",
           currentUrl.pathname === "/"
-            ? "header-container-home "
-            : "header-container "
+            ? "header-container-home justify-between desktop:gap-[280px]"
+            : "header-container justify-between desktop:gap-[313px]"
         )}
       >
-        <Link to="/">
+        <Link to="/" className="">
           <Logo />
         </Link>
-        <nav className="flex items-center">
+        <nav className="flex items-center desktop:justify-between desktop:w-full">
           <MediaQuery minWidth={1280}>
             <Nav />
           </MediaQuery>

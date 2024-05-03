@@ -104,7 +104,9 @@ const NoticesPage = () => {
   return (
     <main>
       <div className="container pb-[32px] pt-[20px] tablet:pt-[53px] tablet:pb-[88px] desktop:pb-[80px] desktop:pt-[64px]">
-        <Title text="Find your favorite pet" />
+        <div className="desktop:px-[32px]">
+          <Title text="Find your favorite pet" />
+        </div>
         <NoticesFilters
           handleFilter={handleFilter}
           resetFilter={resetFilter}
@@ -116,7 +118,7 @@ const NoticesPage = () => {
           handleGender={handleGender}
         />
         {data && data?.results?.length > 0 ? (
-          <NoticesList noticesArr={data?.results} />
+          <NoticesList noticesArr={data?.results} page={"notice"} />
         ) : (
           <p>Sorry, nothing... Try to change the search value </p>
         )}
