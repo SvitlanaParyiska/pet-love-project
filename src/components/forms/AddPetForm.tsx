@@ -20,6 +20,9 @@ const AddPetForm = () => {
   const [checkboxField, setCheckboxField] = useState<string>("");
   const [selectField, setSelectField] = useState<string>("");
   const [avatar, setAvatar] = useState<string>("");
+  const breakpoints = [375, 768, 1280];
+
+  const mq = breakpoints.map((bp) => `@media (min-width: ${bp}px)`);
 
   const handleSex = (item: string) => {
     setCheckboxField(item);
@@ -132,7 +135,7 @@ const AddPetForm = () => {
                 onBlur={handleBlur}
                 placeholder="Enter URL"
                 inputStyles={clsx(
-                  "px-[12px] py-[12px] tablet:px-[16px] tablet:py-[16px] w-[170px]",
+                  "px-[12px] py-[12px] tablet:px-[16px] tablet:py-[16px] w-[170px] tablet:w-[278px]",
                   touched.imgUrl && errors.imgUrl && "!border-red",
                   touched.imgUrl && !errors.imgUrl && "!border-green"
                 )}
@@ -150,7 +153,7 @@ const AddPetForm = () => {
               <button
                 type="button"
                 onClick={() => handleAvatarChange(values.imgUrl)}
-                className="flex items-center py-[10px] px-[7px] rounded-30 bg-light gap-[5px] text-12  leading-[1.33] tracking-[-0.02em]"
+                className="flex items-center justify-center py-[10px] w-[117px] tablet:w-[146px] rounded-30 bg-light gap-[5px] text-12 tablet:text-14 leading-[1.33] tracking-[-0.02em]"
               >
                 <p>Upload photo</p>
                 <svg className="w-[16px] h-[16px]">
@@ -262,7 +265,11 @@ const AddPetForm = () => {
                     fontWeight: 500,
                     fontSize: "14px",
                     width: "143px",
-                    padding: "2px",
+                    padding: "3px",
+                    [mq[1]]: {
+                      padding: "9px",
+                      width: "210px",
+                    },
                   }),
                 }}
               />
