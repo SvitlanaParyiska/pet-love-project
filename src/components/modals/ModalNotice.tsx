@@ -25,11 +25,17 @@ interface ModalEditUser {
 const ModalNotice = ({ item, fav, handleFavorite }: ModalEditUser) => {
   return (
     <div className="w-[330px] mx-auto">
-      <img
-        src={item.imgURL}
-        alt="pet"
-        className="mx-auto rounded-full w-[150px] h-[150px] object-cover mb-[24px]"
-      />
+      <div className="relative w-[150px] mx-auto">
+        <img
+          src={item.imgURL}
+          alt="pet"
+          className="mx-auto rounded-full w-[150px] h-[150px] object-cover mb-[24px]"
+        />
+        <p className="absolute top-0 left-0 bg-light rounded-30 px-[14px] py-[8px] text-accent capitalize text-14  leading-[1.29] tracking-[-0.02em]">
+          {item.category}
+        </p>
+      </div>
+
       <div className="mb-[22px] flex items-center justify-center gap-[84px]">
         <svg aria-label="star" className="w-[16px] h-[16px]">
           <use href={`${sprite}#icon-star`} />
@@ -74,14 +80,6 @@ const ModalNotice = ({ item, fav, handleFavorite }: ModalEditUser) => {
           </p>
           <p className="text-12 capitalize leading-[1.17] tracking-[-0.02em]">
             {item.species}
-          </p>
-        </div>
-        <div>
-          <p className="mb-[2px] text-10 text-darkGrey leading-[1.4] tracking-[-0.02em]">
-            Category
-          </p>
-          <p className="text-12 capitalize leading-[1.17] tracking-[-0.02em]">
-            {item.category}
           </p>
         </div>
       </div>
