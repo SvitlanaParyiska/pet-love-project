@@ -50,7 +50,7 @@ const PortalModal = ({
     >
       <div
         className={clsx(
-          "absolute z-50 p-[50px] rounded-30 flex flex-col items-center bg-white",
+          "absolute z-50 px-[20px] py-[40px] rounded-30 flex flex-col items-center bg-white",
           className
         )}
       >

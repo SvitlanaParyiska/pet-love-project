@@ -24,7 +24,7 @@ interface ModalEditUser {
 
 const ModalNotice = ({ item, fav, handleFavorite }: ModalEditUser) => {
   return (
-    <div className="w-[330px] mx-auto">
+    <div className="w-[279px] tablet:w-[330px] mx-auto">
       <div className="relative w-[150px] mx-auto">
         <img
           src={item.imgURL}

@@ -3,7 +3,7 @@ import imageCat from "/images/cat.png";
 
 const ModalAttention = () => {
   return (
-    <div className="w-[346px] mx-auto">
+    <div className="w-[295px] tablet:w-[346px] mx-auto">
       <div className="mb-[24px] bg-light rounded-full mx-auto  w-[50px] h-[50px] flex items-center justify-center">
         <img src={imageCat} alt="pet" className=" object-cover " />
       </div>

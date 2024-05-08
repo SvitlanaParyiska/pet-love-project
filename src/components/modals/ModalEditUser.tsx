@@ -43,7 +43,7 @@ const ModalEditUser = ({ closeEditUserModal }: ModalEditUser) => {
   return (
     <>
       <h3>Edit information</h3>
-      <div className=" mx-auto mb-[16px] w-[86px] h-[86px] rounded-full overflow-hidden bg-light flex justify-center items-center">
+      <div className="mx-auto mb-[16px] w-[86px] h-[86px] rounded-full overflow-hidden bg-light flex justify-center items-center">
         {avatar ? (
           <img src={avatar} alt="user avatar" />
         ) : (
